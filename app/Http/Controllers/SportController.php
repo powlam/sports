@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sport;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class SportController extends Controller
 {
@@ -55,28 +56,38 @@ class SportController extends Controller
         return view('sports.show', compact('sport'));
     }
 
-    // /**
-    //  * Show the form for editing the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function edit($id)
-    // {
-    //     //
-    // }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $sport = Sport::findOrFail($id);
+        return view('sports.edit', compact('sport'));
+    }
 
-    // /**
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function update(Request $request, $id)
-    // {
-    //     //
-    // }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'name' => [
+                'required',
+                Rule::unique('sports')->ignore($id),
+                'max:100',
+            ],
+        ]);
+        $sport = Sport::findOrFail($id);
+        $sport->update(['name' => $request->input('name')]);
+        return redirect()->route('sports.index')->with('success', __('terms.updated'));
+    }
 
     // /**
     //  * Remove the specified resource from storage.

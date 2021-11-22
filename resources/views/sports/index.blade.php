@@ -23,5 +23,5 @@
             @endforelse
         </tbody>
     </table>
-    <a class="btn btn-primary" href="{{ route('sports.create') }}" role="button">@lang('terms.create_new')</a>
+    <a class="btn btn-primary" href="{{ route('sports.create') }}" role="button">@lang('terms.button.create_new')</a>
 @endsection

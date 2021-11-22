@@ -17,6 +17,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'welcome']);
 
-Route::resource('sports', SportController::class)->only([
-    'index', 'create', 'store', 'show',
+Route::resource('sports', SportController::class)->except([
+    'destroy',
 ]);

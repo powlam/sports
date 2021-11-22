@@ -3,10 +3,8 @@
 @section('main')
     <form action='{{ route('sports.store') }}' method='post'>
         @csrf
-        <div class="mb-3">
-            <label for="sportInputName" class="form-label">@lang('sport.name')</label>
-            <input type="text" id="sportInputName" name='name' class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}">
-        </div>
+        @include('sports.parts.fields')
         <button type="submit" class="btn btn-primary">@lang('terms.button.submit')</button>
+        <a class="btn btn-secondary" href="{{ route('sports.index') }}" role="button">@lang('terms.button.cancel')</a>
     </form>
 @endsection
