@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sport;
+use Illuminate\Http\Request;
 
 class SportController extends Controller
 {
@@ -14,29 +15,33 @@ class SportController extends Controller
     public function index()
     {
         $sports = Sport::all();
-        return view('sport.index', compact('sports'));
+        return view('sports.index', compact('sports'));
     }
 
-    // /**
-    //  * Show the form for creating a new resource.
-    //  *
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function create()
-    // {
-    //     //
-    // }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('sports.create');
+    }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-    //     //
-    // }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|unique:sports|max:100',
+        ]);
+        Sport::create(['name' => $request->input('name')]);
+        return redirect()->route('sports.index')->with('success', __('terms.created'));
+    }
 
     // /**
     //  * Display the specified resource.
