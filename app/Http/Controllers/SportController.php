@@ -89,14 +89,27 @@ class SportController extends Controller
         return redirect()->route('sports.index')->with('success', __('terms.updated'));
     }
 
-    // /**
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function destroy($id)
-    // {
-    //     //
-    // }
+    /**
+     * Show the form to confirm the destruction.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm($id)
+    {
+        $sport = Sport::findOrFail($id);
+        return view('sports.confirm', compact('sport'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        Sport::destroy($id);
+        return redirect()->route('sports.index')->with('success', __('terms.destroyed'));
+    }
 }
