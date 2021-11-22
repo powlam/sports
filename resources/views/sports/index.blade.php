@@ -6,6 +6,7 @@
             <tr>
                 <th class="border-t">ID</th>
                 <th class="border-t">Name</th>
+                <th class="border-t"></th>
             </tr>
         </thead>
         <tbody>
@@ -13,10 +14,11 @@
                 <tr>
                     <td class="border-t">{{ $sport->id }}</td>
                     <td class="border-t">{{ $sport->name }}</td>
+                    <td class="border-t"><a href="{{ route('sports.show', $sport->id) }}">&rarr;</a></td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="2" class="border-t">@lang('terms.nothing_to_show')</td>
+                    <td colspan="3" class="border-t">@lang('terms.nothing_to_show')</td>
                 </tr>
             @endforelse
         </tbody>

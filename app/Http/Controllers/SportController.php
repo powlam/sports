@@ -43,16 +43,17 @@ class SportController extends Controller
         return redirect()->route('sports.index')->with('success', __('terms.created'));
     }
 
-    // /**
-    //  * Display the specified resource.
-    //  *
-    //  * @param  int  $id
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function show($id)
-    // {
-    //     //
-    // }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $sport = Sport::findOrFail($id);
+        return view('sports.show', compact('sport'));
+    }
 
     // /**
     //  * Show the form for editing the specified resource.
