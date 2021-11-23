@@ -48,7 +48,7 @@
             </div>
 
             {{--content--}}
-            <main role="main" class="flex-1 p-4 flex flex-col justify-start">
+            <main role="main" class="flex-1 p-4 flex flex-col justify-start text-gray-900">
                 {{--errors & messages--}}
                 @include('layouts.parts.messages')
 

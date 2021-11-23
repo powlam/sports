@@ -2,7 +2,6 @@
 
 return [
     'button' => [
-        'back' => 'Back',
         'cancel' => 'Cancel',
         'change' => 'Change',
         'create_new' => 'Create new',
