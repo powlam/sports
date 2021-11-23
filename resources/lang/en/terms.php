@@ -10,6 +10,7 @@ return [
         'edit' => 'Edit',
         'submit' => 'Submit',
     ],
+    'close' => 'Close',
     'created' => 'Created',
     'destroyed' => 'Deleted',
     'logo_name' => 'Sports',
