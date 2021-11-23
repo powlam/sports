@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('main')
+@section('main-board')
     <table class="max-w-6xl mx-auto text-center">
         <thead class="bg-white">
             <tr>

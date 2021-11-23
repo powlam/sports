@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('main')
+@section('main-board')
     <form action='{{ route('sports.destroy', $sport->id) }}' method='post'>
         @method('DELETE')
         @csrf

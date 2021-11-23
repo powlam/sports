@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('main')
+@section('main-board')
     <a class="btn btn-secondary" href="{{ route('sports.index') }}" role="button">@lang('terms.button.back')</a>
 
     <h1>

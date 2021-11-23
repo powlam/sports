@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('main')
+@section('main-board')
     <form action='{{ route('sports.store') }}' method='post'>
         @csrf
         @include('sports.parts.fields')

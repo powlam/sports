@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('main')
+@section('main-board')
     <form action='{{ route('sports.update', $sport->id) }}' method='post'>
         @method('PUT')
         @csrf

@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AppController::class, 'welcome']);
+Route::get('/', [AppController::class, 'welcome'])->name('home');
 
 Route::get('/sports/{sport}/destroy', [SportController::class, 'confirm'])->name('sports.confirm');
 Route::resource('sports', SportController::class);

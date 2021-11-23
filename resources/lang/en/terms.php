@@ -12,6 +12,7 @@ return [
     ],
     'created' => 'Created',
     'destroyed' => 'Deleted',
+    'logo_name' => 'Sports',
     'nothing_to_show' => 'Nothing to show',
     'updated' => 'Updated',
 ];
