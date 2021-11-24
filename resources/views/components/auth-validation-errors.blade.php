@@ -13,3 +13,17 @@
         </ul>
     </div>
 @endif
+
+@if (session('success'))
+    <div {{ $attributes }}>
+        <div class="font-medium text-green-600">
+            {{ __('Great!') }}
+        </div>
+
+        <ul class="mt-3 list-disc list-inside text-sm text-green-600">
+            @foreach (Arr::wrap(session('success')) as $message)
+                <li>{{ $message }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
