@@ -5,17 +5,25 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
+                    <a href="{{ route('home') }}" class="text-indigo-400 flex-none flex items-center space-x-2 px-4">
+                        <x-application-logo class="block h-10 w-auto" />
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
+                @php
+                    $links = [
+                        ['routeNamePattern' => 'dashboard', 'url' => route('dashboard'), 'text' => __('Dashboard')],
+                        ['routeNamePattern' => 'sports.*', 'url' => route('sports.index'), 'text' => __('sport.menu_name')],
+                    ];
+                @endphp
+                @foreach ($links as $link)
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="$link['url']" :active="request()->routeIs($link['routeNamePattern'])">
+                            {{ $link['text'] }}
+                        </x-nav-link>
+                    </div>
+                @endforeach
             </div>
 
             <!-- Settings Dropdown -->
