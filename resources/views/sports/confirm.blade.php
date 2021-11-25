@@ -16,9 +16,7 @@
 
                 <div class="md:flex md:items-center">
                     <div class="md:w-1/3">
-                        <label class="block text-red-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            @lang('sport.deleting_confirmation')
-                        </label>
+                        <x-label class="text-red-500 font-bold" :value="__('sport.deleting_confirmation')" />
                     </div>
                     <div class="md:w-2/3 flex space-x-1">
                         <x-button color="red">
