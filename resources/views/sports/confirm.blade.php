@@ -21,9 +21,9 @@
                         </label>
                     </div>
                     <div class="md:w-2/3 flex space-x-1">
-                        <button type="submit" class="border-solid border-4 border-red-200 text-red-600 py-2 px-4 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-red-200">
+                        <x-button color="red">
                             @lang('terms.button.destroy')
-                        </button>
+                        </x-button>
                     </div>
                 </div>
             </form>
