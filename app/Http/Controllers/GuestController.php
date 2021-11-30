@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AppController extends Controller
+class GuestController extends Controller
 {
     /**
      * @return \Illuminate\View\View

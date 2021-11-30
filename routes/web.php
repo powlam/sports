@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AppController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\SportController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AppController::class, 'welcome'])->name('home');
+Route::get('/', [GuestController::class, 'welcome'])->name('home');
 
 require __DIR__.'/auth.php';
 
