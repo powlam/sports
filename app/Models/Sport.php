@@ -28,5 +28,18 @@ class Sport extends Model
      *
      * @var string[]
      */
-    protected $fillable = [ 'name', ];
+    protected $fillable = [
+        'name',
+    ];
+
+    /** Relationships **/
+
+    /**
+     * The related championships
+     */
+    public function championships()
+    {
+        return $this->hasMany(Championship::class);
+    }
+
 }
