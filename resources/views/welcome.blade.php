@@ -22,7 +22,7 @@
 
         <div class="grid grid-cols-3 gap-4">
             @foreach (App\Models\Sport::all() as $sport)
-                <div class="bg-green-400 p-2 rounded cursor-pointer text-center flex items-center justify-center hover:bg-green-700 hover:text-green-400">
+                <div class="bg-green-400 p-2 rounded cursor-pointer text-center flex items-center justify-center hover:bg-green-700 hover:text-green-400 animate pop @if($loop->index > 0) delay-{{ min($loop->index, 15)/*max:delay-15*/ }} @endif">
                     <span class="capitalize font-semibold tracking-wide">{{ $sport->name }}</span>
                 </div>
                 {{-- TODO relate with its championships --}}
