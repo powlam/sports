@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Championship;
 use App\Models\Sport;
+use App\Models\SportDiscipline;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -27,8 +27,8 @@ class GuestController extends Controller
     /**
      * @return \Illuminate\View\View
      */
-    public function championship(Championship $championship)
+    public function sportDiscipline(SportDiscipline $sportDiscipline)
     {
-        return view('guest.championship', compact('championship'));
+        return view('guest.sportDiscipline', compact('sportDiscipline'));
     }
 }

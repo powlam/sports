@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\ChampionshipEdition;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +18,10 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SportSeeder::class,
         ]);
+
+        \App\Models\SportDiscipline::factory(10)
+            ->hasSportEvents(5)
+            ->create();
 
         \App\Models\Championship::factory(10)
             ->hasChampionshipEditions(5)

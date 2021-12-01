@@ -26,11 +26,14 @@
             </h1>
         </x-slot>
 
+        <div class="w-full mb-8 text-center text-gray-300 text-xs uppercase tracking-widest">
+            @lang('Disciplines')
+        </div>
         <div class="grid grid-cols-3 gap-4">
-            @foreach ($sport->championships as $championship)
-                <div class="bg-green-400 p-2 rounded cursor-pointer text-center flex items-center justify-center hover:bg-green-700 hover:text-green-400 animate pop @if($loop->index > 0) delay-{{ min($loop->index, 15)/*max:delay-15*/ }} @endif">
-                    <a href="{{ route('guest.championship', $championship)}}" class="capitalize font-semibold tracking-wide">
-                        {{ $championship->name }}
+            @foreach ($sport->sportDisciplines as $sportDiscipline)
+                <div class="bg-green-400 p-2 rounded cursor-pointer text-center flex items-center justify-center hover:bg-green-700 hover:text-green-400 animate pop @if($sportDiscipline->default) border-b-4 border-green-800 @endif @if($loop->index > 0) delay-{{ min($loop->index, 15)/*max:delay-15*/ }} @endif">
+                    <a href="{{ route('guest.sportDiscipline', $sportDiscipline)}}" class="capitalize font-semibold tracking-wide">
+                        {{ $sportDiscipline->name }}
                     </a>
                 </div>
             @endforeach

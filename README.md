@@ -10,20 +10,18 @@ Sports is a platform designed to register every sport event.
 
 # Data model
 ## Sports
-> TODO
-**Sports** are divided into **Disciplines** (one of them can be the "default" one).
+**Sports** are divided into **SportDisciplines** (one of them can be the "default" one).
 
-> TODO
-**Disciplines** are divided into **Events** (one of them can be the "default" one).
+**SportDisciplines** are divided into **SportEvents** (one of them can be the "default" one).
 
 ## Championships
-**Championships** are divided into **Editions**.
+**Championships** are divided into **ChampionshipEditions**.
 
 > TODO
-An **Edition** has one or more related **Disciplines** and **Events** (**EditionDisciplines** and **EditionEvents**).
+A **ChampionshipEdition** has one or more related **SportDisciplines** and **SportEvents** (**EditionDisciplines** and **EditionEvents**).
 
-> * NOTE: As a result, a Championship is related with its Sport via Edition, EditionDiscipline and Discipline.
-> * TODO: There must be an easy way to relate simple Championships with its Sport ("La Liga" => "football")
+> * NOTE: As a result, a **Championship** is related with its **Sport** via **ChampionshipEdition**, **EditionDiscipline** and **Discipline**.
+> * TODO: There must be an easier way to relate simple **Championships** with its **Sport** ("La Liga" => "football")
 
 > TODO
 Each **EditionEvent** is divided into **Rounds**.

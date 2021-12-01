@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Sport extends Model
+class SportEvent extends Model
 {
     use HasFactory;
 
@@ -29,33 +29,37 @@ class Sport extends Model
      * @var string[]
      */
     protected $fillable = [
+        'sport_discipline_id',
+        'default',
         'name',
+        'description',
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'default' => 'boolean',
     ];
 
     /** Relationships **/
 
     /**
-     * The related disciplines
+     * The related discipline
      */
-    public function sportDisciplines()
+    public function sportDiscipline()
     {
-        return $this->hasMany(SportDiscipline::class);
+        return $this->belongsTo(SportDiscipline::class);
     }
 
     /**
-     * @return App\Models\SportDiscipline
+     * The related sport
      */
-    public function defaultDiscipline()
+    public function sport()
     {
-        return $this->sportDisciplines->where('default', true)->first();
-    }
-
-    /**
-     * The related events
-     */
-    public function sportEvents()
-    {
-        return $this->hasManyThrough(SportEvent::class, SportDiscipline::class);
+        return $this->hasOneThrough(Sport::class, SportDiscipline::class);
     }
 
 }

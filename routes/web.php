@@ -23,7 +23,7 @@ Route::name('guest.')
 
     Route::get('/', [GuestController::class, 'welcome'])->name('home');
     Route::get('/sports/{sport}', [GuestController::class, 'sport'])->name('sport');
-    Route::get('/championships/{championship}', [GuestController::class, 'championship'])->name('championship');
+    Route::get('/disciplines/{sportDiscipline}', [GuestController::class, 'sportDiscipline'])->name('sportDiscipline');
 
 });
 
