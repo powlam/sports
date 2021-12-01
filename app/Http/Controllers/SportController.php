@@ -16,7 +16,7 @@ class SportController extends Controller
     public function index()
     {
         $sports = Sport::all();
-        return view('sports.index', compact('sports'));
+        return view('dashboard.sports.index', compact('sports'));
     }
 
     /**
@@ -26,7 +26,7 @@ class SportController extends Controller
      */
     public function create()
     {
-        return view('sports.create');
+        return view('dashboard.sports.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class SportController extends Controller
         ]);
 
         Sport::create(['name' => $request->input('name')]);
-        return redirect()->route('sports.index')->with('success', __('terms.created'));
+        return redirect()->route('dashboard.sports.index')->with('success', __('terms.created'));
     }
 
     /**
@@ -53,7 +53,7 @@ class SportController extends Controller
      */
     public function show(Sport $sport)
     {
-        return view('sports.show', compact('sport'));
+        return view('dashboard.sports.show', compact('sport'));
     }
 
     /**
@@ -64,7 +64,7 @@ class SportController extends Controller
      */
     public function edit(Sport $sport)
     {
-        return view('sports.edit', compact('sport'));
+        return view('dashboard.sports.edit', compact('sport'));
     }
 
     /**
@@ -85,7 +85,7 @@ class SportController extends Controller
         ]);
 
         $sport->update(['name' => $request->input('name')]);
-        return redirect()->route('sports.index')->with('success', __('terms.updated'));
+        return redirect()->route('dashboard.sports.index')->with('success', __('terms.updated'));
     }
 
     /**
@@ -96,7 +96,7 @@ class SportController extends Controller
      */
     public function confirm(Sport $sport)
     {
-        return view('sports.confirm', compact('sport'));
+        return view('dashboard.sports.confirm', compact('sport'));
     }
 
     /**
@@ -108,6 +108,6 @@ class SportController extends Controller
     public function destroy(Sport $sport)
     {
         Sport::destroy($sport->id);
-        return redirect()->route('sports.index')->with('success', __('terms.destroyed'));
+        return redirect()->route('dashboard.sports.index')->with('success', __('terms.destroyed'));
     }
 }

@@ -16,7 +16,7 @@ class ChampionshipController extends Controller
     public function index()
     {
         $championships = Championship::all();
-        return view('championships.index', compact('championships'));
+        return view('dashboard.championships.index', compact('championships'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ChampionshipController extends Controller
      */
     public function create()
     {
-        return view('championships.create');
+        return view('dashboard.championships.create');
     }
 
     /**
@@ -42,7 +42,7 @@ class ChampionshipController extends Controller
         // ]);
 
         Championship::create(['name' => $request->input('name')]);
-        return redirect()->route('championships.index')->with('success', __('terms.created'));
+        return redirect()->route('dashboard.championships.index')->with('success', __('terms.created'));
     }
 
     /**
@@ -53,7 +53,7 @@ class ChampionshipController extends Controller
      */
     public function show(Championship $championship)
     {
-        return view('championships.show', compact('championship'));
+        return view('dashboard.championships.show', compact('championship'));
     }
 
     /**
@@ -64,7 +64,7 @@ class ChampionshipController extends Controller
      */
     public function edit(Championship $championship)
     {
-        return view('championships.edit', compact('championship'));
+        return view('dashboard.championships.edit', compact('championship'));
     }
 
     /**
@@ -85,7 +85,7 @@ class ChampionshipController extends Controller
         // ]);
 
         $championship->update(['name' => $request->input('name')]);
-        return redirect()->route('championships.index')->with('success', __('terms.updated'));
+        return redirect()->route('dashboard.championships.index')->with('success', __('terms.updated'));
     }
 
     /**
@@ -96,7 +96,7 @@ class ChampionshipController extends Controller
      */
     public function confirm(Championship $championship)
     {
-        return view('championships.confirm', compact('championship'));
+        return view('dashboard.championships.confirm', compact('championship'));
     }
 
     /**
@@ -108,6 +108,6 @@ class ChampionshipController extends Controller
     public function destroy(Championship $championship)
     {
         Championship::destroy($championship->id);
-        return redirect()->route('championships.index')->with('success', __('terms.destroyed'));
+        return redirect()->route('dashboard.championships.index')->with('success', __('terms.destroyed'));
     }
 }

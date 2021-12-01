@@ -16,18 +16,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* Web site */
+
 Route::get('/', [GuestController::class, 'welcome'])->name('home');
+
+/* Authentication */
 
 require __DIR__.'/auth.php';
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
+/* Administration site */
+
+Route::middleware(['auth'])
+        ->prefix('dashboard')
+        ->name(('dashboard.'))
+        ->group(function () {
+
+    Route::get('/', function () {
         return view('dashboard');
-    })->name('dashboard');
+    })->name('home');
     
     Route::get('/sports/{sport}/destroy', [SportController::class, 'confirm'])->name('sports.confirm');
     Route::resource('sports', SportController::class);
     
     Route::get('/championships/{championship}/destroy', [ChampionshipController::class, 'confirm'])->name('championships.confirm');
     Route::resource('championships', ChampionshipController::class);
+
 });

@@ -28,7 +28,7 @@
                                 {{ $sport->name }}
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200">
-                                <a href="{{ route('sports.show', $sport->id) }}" class="inline-block text-purple-600 p-2 rounded-full hover:bg-purple-200">
+                                <a href="{{ route('dashboard.sports.show', $sport->id) }}" class="inline-block text-purple-600 p-2 rounded-full hover:bg-purple-200">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                     </svg>
@@ -45,7 +45,7 @@
                 </tbody>
             </table>
 
-            <x-button-link href="{{ route('sports.create') }}" color="purple">
+            <x-button-link href="{{ route('dashboard.sports.create') }}" color="purple">
                 @lang('terms.button.create_new')
             </x-button-link>
         </div>

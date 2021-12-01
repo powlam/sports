@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        @include('sports.parts.header', ['back' => route('sports.show', $sport->id)])
+        @include('dashboard.championships.parts.header')
     </x-slot>
 
     <div class="py-12">
@@ -8,21 +8,17 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            <form action='{{ route('sports.update', $sport->id) }}' method='post' class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                @method('PUT')
+            <form action='{{ route('dashboard.championships.store') }}' method='post' class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf
 
-                @include('sports.parts.fields')
+                @include('dashboard.championships.parts.fields')
 
                 <div class="md:flex md:items-center">
                     <div class="md:w-1/3"></div>
                     <div class="md:w-2/3 flex space-x-1">
                         <x-button color="green">
-                            @lang('terms.button.change')
+                            @lang('terms.button.submit')
                         </x-button>
-                        <x-button-link href="{{ route('sports.confirm', $sport->id) }}" color="red">
-                            @lang('terms.button.destroy')
-                        </x-button-link>
                     </div>
                 </div>
             </form>

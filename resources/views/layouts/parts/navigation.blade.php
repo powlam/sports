@@ -13,9 +13,9 @@
                 <!-- Navigation Links -->
                 @php
                     $links = [
-                        ['routeNamePattern' => 'dashboard', 'url' => route('dashboard'), 'text' => __('Dashboard')],
-                        ['routeNamePattern' => 'sports.*', 'url' => route('sports.index'), 'text' => __('sport.menu_name')],
-                        ['routeNamePattern' => 'championships.*', 'url' => route('championships.index'), 'text' => __('championship.menu_name')],
+                        ['routeNamePattern' => 'dashboard.home', 'url' => route('dashboard.home'), 'text' => __('Dashboard')],
+                        ['routeNamePattern' => 'dashboard.sports.*', 'url' => route('dashboard.sports.index'), 'text' => __('sport.menu_name')],
+                        ['routeNamePattern' => 'dashboard.championships.*', 'url' => route('dashboard.championships.index'), 'text' => __('championship.menu_name')],
                     ];
                 @endphp
                 @foreach ($links as $link)
@@ -72,7 +72,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('dashboard.home')" :active="request()->routeIs('dashboard.home')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
         </div>

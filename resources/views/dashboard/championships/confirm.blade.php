@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        @include('sports.parts.header', ['back' => route('sports.show', $sport->id)])
+        @include('dashboard.championships.parts.header', ['back' => route('dashboard.championships.show', $championship->id)])
     </x-slot>
 
     <div class="py-12">
@@ -8,15 +8,15 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            <form action='{{ route('sports.destroy', $sport->id) }}' method='post' class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form action='{{ route('dashboard.championships.destroy', $championship->id) }}' method='post' class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @method('DELETE')
                 @csrf
 
-                @include('sports.parts.fields')
+                @include('dashboard.championships.parts.fields')
 
                 <div class="md:flex md:items-center">
                     <div class="md:w-1/3">
-                        <x-label class="text-red-500 font-bold" :value="__('sport.deleting_confirmation')" />
+                        <x-label class="text-red-500 font-bold" :value="__('championship.deleting_confirmation')" />
                     </div>
                     <div class="md:w-2/3 flex space-x-1">
                         <x-button color="red">
