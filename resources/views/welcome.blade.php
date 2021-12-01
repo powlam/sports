@@ -25,6 +25,7 @@
                 <div class="bg-green-400 p-2 rounded cursor-pointer text-center flex items-center justify-center hover:bg-green-700 hover:text-green-400">
                     <span class="capitalize font-semibold tracking-wide">{{ $sport->name }}</span>
                 </div>
+                {{-- TODO relate with its championships --}}
             @endforeach
         </div>
     </x-guest-card>

@@ -40,6 +40,7 @@ class SportController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:sports|max:100',
         ]);
+
         Sport::create(['name' => $request->input('name')]);
         return redirect()->route('sports.index')->with('success', __('terms.created'));
     }
@@ -47,24 +48,22 @@ class SportController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Sport  $sport
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Sport $sport)
     {
-        $sport = Sport::findOrFail($id);
         return view('sports.show', compact('sport'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Sport  $sport
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Sport $sport)
     {
-        $sport = Sport::findOrFail($id);
         return view('sports.edit', compact('sport'));
     }
 
@@ -72,19 +71,19 @@ class SportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Sport  $sport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Sport $sport)
     {
         $this->validate($request, [
             'name' => [
                 'required',
-                Rule::unique('sports')->ignore($id),
+                Rule::unique('sports')->ignore($sport->id),
                 'max:100',
             ],
         ]);
-        $sport = Sport::findOrFail($id);
+
         $sport->update(['name' => $request->input('name')]);
         return redirect()->route('sports.index')->with('success', __('terms.updated'));
     }
@@ -92,24 +91,23 @@ class SportController extends Controller
     /**
      * Show the form to confirm the destruction.
      *
-     * @param  int  $id
+     * @param  \App\Models\Sport  $sport
      * @return \Illuminate\Http\Response
      */
-    public function confirm($id)
+    public function confirm(Sport $sport)
     {
-        $sport = Sport::findOrFail($id);
         return view('sports.confirm', compact('sport'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Sport  $sport
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sport $sport)
     {
-        Sport::destroy($id);
+        Sport::destroy($sport->id);
         return redirect()->route('sports.index')->with('success', __('terms.destroyed'));
     }
 }

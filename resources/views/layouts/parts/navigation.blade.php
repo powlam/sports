@@ -15,6 +15,7 @@
                     $links = [
                         ['routeNamePattern' => 'dashboard', 'url' => route('dashboard'), 'text' => __('Dashboard')],
                         ['routeNamePattern' => 'sports.*', 'url' => route('sports.index'), 'text' => __('sport.menu_name')],
+                        ['routeNamePattern' => 'championships.*', 'url' => route('championships.index'), 'text' => __('championship.menu_name')],
                     ];
                 @endphp
                 @foreach ($links as $link)

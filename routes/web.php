@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\SportController;
 use Illuminate\Support\Facades\Route;
@@ -26,4 +27,7 @@ Route::middleware(['auth'])->group(function () {
     
     Route::get('/sports/{sport}/destroy', [SportController::class, 'confirm'])->name('sports.confirm');
     Route::resource('sports', SportController::class);
+    
+    Route::get('/championships/{championship}/destroy', [ChampionshipController::class, 'confirm'])->name('championships.confirm');
+    Route::resource('championships', ChampionshipController::class);
 });
