@@ -18,7 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 /* Web site */
 
-Route::get('/', [GuestController::class, 'welcome'])->name('home');
+Route::name('guest.')
+        ->group(function() {
+
+    Route::get('/', [GuestController::class, 'welcome'])->name('home');
+    Route::get('/sports/{sport}', [GuestController::class, 'sport'])->name('sport');
+    Route::get('/championships/{championship}', [GuestController::class, 'championship'])->name('championship');
+
+});
 
 /* Authentication */
 
