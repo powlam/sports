@@ -70,4 +70,12 @@ class SportEvent extends Model
         return $this->belongsToMany(ChampionshipEdition::class, 'tournaments')->as('tournament')->withPivot('genre', 'type', 'state');
     }
 
+    /**
+     * The related championships
+     */
+    public function championships()
+    {
+        return $this->hasManyThrough(Championship::class, ChampionshipEvent::class, 'sport_event_id', 'id', 'id', 'championship_id');
+    }
+
 }

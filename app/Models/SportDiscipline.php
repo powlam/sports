@@ -69,6 +69,22 @@ class SportDiscipline extends Model
         return $this->sportEvents->where('default', true)->first();
     }
 
+    /**
+     * The related championships
+     */
+    public function championships()
+    {
+        return $this->hasManyThrough(Championship::class, ChampionshipDiscipline::class, 'sport_discipline_id', 'id', 'id', 'championship_id');
+    }
+
+    /**
+     * The related championship editions
+     */
+    public function championshipEditions()
+    {
+        return $this->hasManyThrough(ChampionshipEdition::class, EditionDiscipline::class, 'sport_discipline_id', 'id', 'id', 'championship_edition_id');
+    }
+
     /** Scopes **/
 
     /**

@@ -83,4 +83,20 @@ class ChampionshipEdition extends Model
         return $this->belongsToMany(SportEvent::class, 'tournaments')->as('tournament')->withPivot('genre', 'type', 'state');
     }
 
+    /**
+     * The related sports
+     */
+    public function sports()
+    {
+        return $this->hasManyThrough(Sport::class, EditionSport::class, 'championship_edition_id', 'id', 'id', 'sport_id');
+    }
+
+    /**
+     * The related sport disciplines
+     */
+    public function sportDisciplines()
+    {
+        return $this->hasManyThrough(SportDiscipline::class, EditionDiscipline::class, 'championship_edition_id', 'id', 'id', 'sport_discipline_id');
+    }
+
 }

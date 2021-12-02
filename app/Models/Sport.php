@@ -58,4 +58,20 @@ class Sport extends Model
         return $this->hasManyThrough(SportEvent::class, SportDiscipline::class);
     }
 
+    /**
+     * The related championships
+     */
+    public function championships()
+    {
+        return $this->hasManyThrough(Championship::class, ChampionshipSport::class, 'sport_id', 'id', 'id', 'championship_id');
+    }
+
+    /**
+     * The related championship editions
+     */
+    public function championshipEditions()
+    {
+        return $this->hasManyThrough(ChampionshipEdition::class, EditionSport::class, 'sport_id', 'id', 'id', 'championship_edition_id');
+    }
+
 }
