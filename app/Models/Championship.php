@@ -30,37 +30,13 @@ class Championship extends Model
      */
     protected $fillable = [ 
         'id', 
-        'sport_id',
         'name',
-        'genre',
-        'type',
         'scope',
         'location',
         'notes',
     ];
 
     /*****/
-
-    /**
-     * The available genres
-     *
-     * @var string[]
-     */
-    public static $genres = [
-        'M' => 'men',
-        'W' => 'women',
-        'X' => 'mixed',
-    ];
-
-    /**
-     * The available types
-     *
-     * @var string[]
-     */
-    public static $types = [
-        'league',
-        'knockout',
-    ];
 
     /**
      * The available scopes
@@ -74,14 +50,6 @@ class Championship extends Model
     ];
 
     /** Relationships **/
-
-    /**
-     * The related sport
-     */
-    public function sport()
-    {
-        return $this->belongsTo(Sport::class);
-    }
 
     /**
      * The related editions

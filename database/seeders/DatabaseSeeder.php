@@ -26,5 +26,8 @@ class DatabaseSeeder extends Seeder
         \App\Models\Championship::factory(10)
             ->hasChampionshipEditions(5)
             ->create();
+
+        \App\Models\Tournament::factory(20)
+            ->create();
     }
 }

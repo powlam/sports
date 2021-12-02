@@ -17,14 +17,14 @@ Sports is a platform designed to register every sport event.
 ## Championships
 **Championships** are divided into **ChampionshipEditions**.
 
-> TODO
-A **ChampionshipEdition** has one or more related **SportDisciplines** and **SportEvents** (**EditionDisciplines** and **EditionEvents**).
+A **ChampionshipEdition** has one or more related **SportEvents** (**Tournaments**).
 
-> * NOTE: As a result, a **Championship** is related with its **Sport** via **ChampionshipEdition**, **EditionDiscipline** and **Discipline**.
-> * TODO: There must be an easier way to relate simple **Championships** with its **Sport** ("La Liga" => "football")
+As a result, a **Championship** is related with its **Sport** via **ChampionshipEdition**, **Tournament**, **SportEvent** and **SportDiscipline**.
+
+> TODO: There are views to easily relate **Championships** and **Sports**; each view has an Eloquent model: **EditionDiscipline**, **EditionSport**, **ChampionshipSport**, **ChampionshipDiscipline** and **ChampionshipEvent**
 
 > TODO
-Each **EditionEvent** is divided into **Rounds**.
+Each **Tournament** is divided into **Rounds**.
 
 > TODO
 In each **Round** there are **Games**.

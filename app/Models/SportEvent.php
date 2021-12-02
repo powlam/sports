@@ -62,4 +62,12 @@ class SportEvent extends Model
         return $this->hasOneThrough(Sport::class, SportDiscipline::class);
     }
 
+    /**
+     * The related editions
+     */
+    public function championshipEditions()
+    {
+        return $this->belongsToMany(ChampionshipEdition::class, 'tournaments')->as('tournament')->withPivot('genre', 'type', 'state');
+    }
+
 }
