@@ -21,7 +21,7 @@ A **ChampionshipEdition** has one or more related **SportEvents** (**Tournaments
 
 As a result, a **Championship** is related with its **Sport** via **ChampionshipEdition**, **Tournament**, **SportEvent** and **SportDiscipline**.
 
-> TODO: There are views to easily relate **Championships** and **Sports**; each view has an Eloquent model: **EditionDiscipline**, **EditionSport**, **ChampionshipSport**, **ChampionshipDiscipline** and **ChampionshipEvent**
+There are views to easily relate **Championships** and **Sports**; each view has an Eloquent model: **EditionDiscipline**, **EditionSport**, **ChampionshipSport**, **ChampionshipDiscipline** and **ChampionshipEvent**
 
 > TODO
 Each **Tournament** is divided into **Rounds**.
