@@ -22,8 +22,13 @@ Route::name('guest.')
         ->group(function() {
 
     Route::get('/', [GuestController::class, 'welcome'])->name('home');
+
     Route::get('/sports/{sport}', [GuestController::class, 'sport'])->name('sport');
     Route::get('/disciplines/{sportDiscipline}', [GuestController::class, 'sportDiscipline'])->name('sportDiscipline');
+    Route::get('/events/{sportEvent}', [GuestController::class, 'sportEvent'])->name('sportEvent');
+
+    Route::get('/championships/{championship}', [GuestController::class, 'championship'])->name('championship');
+    Route::get('/editions/{championshipEdition}', [GuestController::class, 'championshipEdition'])->name('championshipEdition');
 
 });
 

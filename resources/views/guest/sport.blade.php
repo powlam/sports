@@ -26,7 +26,7 @@
             </h1>
         </x-slot>
 
-        <div class="w-full mb-8 text-center text-gray-300 text-xs uppercase tracking-widest">
+        <div class="w-full mb-4 text-center text-gray-300 text-xs uppercase tracking-widest">
             @lang('Disciplines')
         </div>
         <div class="grid grid-cols-3 gap-4">

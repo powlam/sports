@@ -21,22 +21,19 @@
 
     <x-guest-card>
         <x-slot name="logo">
-            <a href="{{ route('guest.sport', $sportDiscipline->sport)}}" class="text-green-300 text-xl font-extrabold capitalize tracking-wide">
-                {{ $sportDiscipline->sport->name }}
-            </a>
             <h1 class="text-green-400 text-2xl font-extrabold capitalize tracking-wide">
-                {{ $sportDiscipline->name }}
+                {{ $championship->name }}
             </h1>
         </x-slot>
 
         <div class="w-full mb-4 text-center text-gray-300 text-xs uppercase tracking-widest">
-            @lang('Events')
+            @lang('Editions')
         </div>
         <div class="grid grid-cols-3 gap-4">
-            @foreach ($sportDiscipline->sportEvents as $sportEvent)
-                <div class="bg-green-400 p-2 rounded cursor-pointer text-center flex items-center justify-center hover:bg-green-700 hover:text-green-400 animate pop @if($sportEvent->default) border-b-4 border-green-800 @endif @if($loop->index > 0) delay-{{ min($loop->index, 15)/*max:delay-15*/ }} @endif">
-                    <a href="{{ route('guest.sportEvent', $sportEvent)}}" class="capitalize font-semibold tracking-wide">
-                        <span class="capitalize font-semibold tracking-wide">{{ $sportEvent->name }}</span>
+            @foreach ($championship->championshipEditions as $championshipEdition)
+                <div class="bg-green-400 p-2 rounded cursor-pointer text-center flex items-center justify-center hover:bg-green-700 hover:text-green-400 animate pop @if($championshipEdition->default) border-b-4 border-green-800 @endif @if($loop->index > 0) delay-{{ min($loop->index, 15)/*max:delay-15*/ }} @endif">
+                    <a href="{{ route('guest.championshipEdition', $championshipEdition)}}" class="capitalize font-semibold tracking-wide">
+                        {{ $championshipEdition->name }}
                     </a>
                 </div>
             @endforeach
