@@ -75,23 +75,56 @@ class Tournament extends Model
 
     /**
      * All the editions of this tournament
+     * They share Championship, SportEvent and genre
      * 
      * @return App\Models\Tournament[]
      */
-    //TODO public function editions()
+    public function editions()
+    {
+        return Tournament::whereIn('championship_edition_id', ChampionshipEdition::where('championship_id', $this->championshipEdition->championship_id)->pluck('id'))
+            ->where('sport_event_id', $this->sport_event_id)
+            ->where('genre', $this->genre)
+            ->orderBy(
+                ChampionshipEdition::select('edition')
+                    ->whereColumn('id', 'tournaments.championship_edition_id')
+                    ->orderBy('edition')
+                    ->limit(1)
+            )
+            ->get();
+    }
 
     /**
      * The previous edition of this tournament
+     * They share Championship, SportEvent and genre; and the ChampionshipEdition::$edition is 1 below
      * 
-     * @return App\Models\Tournament
+     * @return App\Models\Tournament|null
      */
-    //TODO public function previousEdition()
+    public function previousEdition()
+    {
+        if (!($previousChampionshipEdition = $this->championshipEdition->previous())) {
+            return null;
+        }
+        return Tournament::where('championship_edition_id', $previousChampionshipEdition->id)
+            ->where('sport_event_id', $this->sport_event_id)
+            ->where('genre', $this->genre)
+            ->first();
+    }
 
     /**
      * The next edition of this tournament
+     * They share Championship, SportEvent and genre; and the ChampionshipEdition::$edition is 1 above
      * 
-     * @return App\Models\Tournament
+     * @return App\Models\Tournament|null
      */
-    //TODO public function nextEdition()
+    public function nextEdition()
+    {
+        if (!($nextChampionshipEdition = $this->championshipEdition->next())) {
+            return null;
+        }
+        return Tournament::where('championship_edition_id', $nextChampionshipEdition->id)
+            ->where('sport_event_id', $this->sport_event_id)
+            ->where('genre', $this->genre)
+            ->first();
+    }
 
 }

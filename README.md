@@ -24,10 +24,13 @@ As a result, a **Championship** is related with its **Sport** via **Championship
 There are views to easily relate **Championships** and **Sports**; each view has an Eloquent model: **EditionDiscipline**, **EditionSport**, **ChampionshipSport**, **ChampionshipDiscipline** and **ChampionshipEvent**
 
 > TODO
-Each **Tournament** is divided into **Rounds**.
+Each **Tournament** is divided into **Phases** (**order**ed).
 
 > TODO
-In each **Round** there are **Games**.
+In each **Phase** there are **Games**.
 
 ## Participants
+> /*TODO*/
+
+# Visualization
 > /*TODO*/

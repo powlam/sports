@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -65,6 +66,18 @@ class ChampionshipEdition extends Model
         3 => 'ended',
     ];
 
+    /**
+     * The "booted" method of the model.
+     *
+     * @return void
+     */
+    protected static function booted()
+    {
+        static::addGlobalScope('orderedByEdition', function (Builder $builder) {
+            $builder->orderBy('edition');
+        });
+    }
+
     /** Relationships **/
 
     /**
@@ -97,6 +110,32 @@ class ChampionshipEdition extends Model
     public function sportDisciplines()
     {
         return $this->hasManyThrough(SportDiscipline::class, EditionDiscipline::class, 'championship_edition_id', 'id', 'id', 'sport_discipline_id');
+    }
+
+    /*****/
+
+    /**
+     * The previous edition of this championship
+     * 
+     * @return App\Models\ChampionshipEdition
+     */
+    public function previous()
+    {
+        return ChampionshipEdition::where('championship_id', $this->championship_id)
+            ->where('edition', $this->edition - 1)
+            ->first();
+    }
+
+    /**
+     * The next edition of this championship
+     * 
+     * @return App\Models\ChampionshipEdition
+     */
+    public function next()
+    {
+        return ChampionshipEdition::where('championship_id', $this->championship_id)
+            ->where('edition', $this->edition + 1)
+            ->first();
     }
 
 }
