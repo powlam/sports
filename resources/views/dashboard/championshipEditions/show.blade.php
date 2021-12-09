@@ -14,8 +14,8 @@
     </div>
 
     {{-- Relationships --}}
-    <div class="flex flex-wrap space-x-4 bg-yellow-50">
-        <x-related-card>
+    <div class="flex justify-center flex-wrap space-x-4 bg-yellow-50">
+        <x-dashboard.related-card>
             <x-slot name="title">
                 @lang('Championships')
             </x-slot>
@@ -23,11 +23,11 @@
             <a href="{{ route('dashboard.championships.show', $championshipEdition->championship->id) }}" class="text-gray-300 hover:text-current border-b-2 border-solid border-transparent hover:border-yellow-500 cursor-pointer select-none">
                 <span class="text-xs mr-3">{{ $championshipEdition->championship->id }}</span> {{ $championshipEdition->championship->name }}
             </a>
-        </x-related-card>
+        </x-dashboard.related-card>
     </div>
 
-    <div class="flex flex-wrap space-x-4 bg-yellow-50">
-        <x-related-card>
+    <div class="flex justify-center flex-wrap space-x-4 bg-yellow-50">
+        <x-dashboard.related-card>
             <x-slot name="title">
                 @lang('Sports')
             </x-slot>
@@ -37,9 +37,9 @@
                     <span class="text-xs mr-3">{{ $sport->id }}</span> {{ $sport->name }}
                 </a>
             @endforeach
-        </x-related-card>
+        </x-dashboard.related-card>
 
-        <x-related-card>
+        <x-dashboard.related-card>
             <x-slot name="title">
                 @lang('Disciplines')
             </x-slot>
@@ -49,9 +49,9 @@
                     <span class="text-xs mr-3">{{ $sportDiscipline->id }}</span> {{ $sportDiscipline->name }}
                 </a>
             @endforeach
-        </x-related-card>
+        </x-dashboard.related-card>
 
-        <x-related-card>
+        <x-dashboard.related-card>
             <x-slot name="title">
                 @lang('Events')
             </x-slot>
@@ -61,6 +61,6 @@
                     <span class="text-xs mr-3">{{ $sportEvent->id }}</span> {{ $sportEvent->name }}
                 </a>
             @endforeach
-        </x-related-card>
+        </x-dashboard.related-card>
     </div>
 </x-app-layout>
