@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        @include('dashboard.sports.parts.header')
+        @include('dashboard.sportDisciplines.parts.header')
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex space-x-1">
-                <x-button-link href="{{ route('dashboard.sports.edit', $sport->id) }}" color="purple">
+                <x-button-link href="{{ route('dashboard.sportDisciplines.edit', $sportDiscipline->id) }}" color="purple">
                     @lang('terms.button.edit')
                 </x-button-link>
             </div>
@@ -17,14 +17,12 @@
     <div class="flex flex-wrap space-x-4 bg-yellow-50">
         <x-related-card>
             <x-slot name="title">
-                @lang('Disciplines')
+                @lang('Sports')
             </x-slot>
 
-            @foreach ($sport->sportDisciplines as $sportDiscipline)
-                <a href="{{ route('dashboard.sportDisciplines.show', $sportDiscipline->id) }}" class="text-gray-300 hover:text-current border-b-2 border-solid border-transparent hover:border-yellow-500 cursor-pointer select-none">
-                    <span class="text-xs mr-3">{{ $sportDiscipline->id }}</span> {{ $sportDiscipline->name }}
-                </a>
-            @endforeach
+            <a href="{{ route('dashboard.sports.show', $sportDiscipline->sport->id) }}" class="text-gray-300 hover:text-current border-b-2 border-solid border-transparent hover:border-yellow-500 cursor-pointer select-none">
+                <span class="text-xs mr-3">{{ $sportDiscipline->sport->id }}</span> {{ $sportDiscipline->sport->name }}
+            </a>
         </x-related-card>
 
         <x-related-card>
@@ -32,7 +30,7 @@
                 @lang('Events')
             </x-slot>
 
-            @foreach ($sport->sportEvents as $sportEvent)
+            @foreach ($sportDiscipline->sportEvents as $sportEvent)
                 <a href="{{ route('dashboard.sportEvents.show', $sportEvent->id) }}" class="text-gray-300 hover:text-current border-b-2 border-solid border-transparent hover:border-yellow-500 cursor-pointer select-none">
                     <span class="text-xs mr-3">{{ $sportEvent->id }}</span> {{ $sportEvent->name }}
                 </a>
@@ -46,7 +44,7 @@
                 @lang('Championships')
             </x-slot>
 
-            @foreach ($sport->championships as $championship)
+            @foreach ($sportDiscipline->championships as $championship)
                 <a href="{{ route('dashboard.championships.show', $championship->id) }}" class="text-gray-300 hover:text-current border-b-2 border-solid border-transparent hover:border-yellow-500 cursor-pointer select-none">
                     <span class="text-xs mr-3">{{ $championship->id }}</span> {{ $championship->name }}
                 </a>
@@ -58,7 +56,7 @@
                 @lang('Editions')
             </x-slot>
 
-            @foreach ($sport->championshipEditions as $championshipEdition)
+            @foreach ($sportDiscipline->championshipEditions as $championshipEdition)
                 <a href="{{ route('dashboard.championshipEditions.show', $championshipEdition->id) }}" class="text-gray-300 hover:text-current border-b-2 border-solid border-transparent hover:border-yellow-500 cursor-pointer select-none">
                     <span class="text-xs mr-3">{{ $championshipEdition->id }}</span> {{ $championshipEdition->name }}
                 </a>

@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ChampionshipController;
+use App\Http\Controllers\ChampionshipEditionController;
 use App\Http\Controllers\GuestController;
 use App\Http\Controllers\SportController;
+use App\Http\Controllers\SportDisciplineController;
+use App\Http\Controllers\SportEventController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,7 +43,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])
         ->prefix('dashboard')
-        ->name(('dashboard.'))
+        ->name('dashboard.')
         ->group(function () {
 
     Route::get('/', function () {
@@ -50,7 +53,16 @@ Route::middleware(['auth'])
     Route::get('/sports/{sport}/destroy', [SportController::class, 'confirm'])->name('sports.confirm');
     Route::resource('sports', SportController::class);
     
+    Route::get('/sportDisciplines/{sportDiscipline}/destroy', [SportDisciplineController::class, 'confirm'])->name('sportDisciplines.confirm');
+    Route::resource('sportDisciplines', SportDisciplineController::class);
+    
+    Route::get('/sportEvents/{sportEvent}/destroy', [SportEventController::class, 'confirm'])->name('sportEvents.confirm');
+    Route::resource('sportEvents', SportEventController::class);
+    
     Route::get('/championships/{championship}/destroy', [ChampionshipController::class, 'confirm'])->name('championships.confirm');
     Route::resource('championships', ChampionshipController::class);
+
+    Route::get('/championshipEditions/{championshipEdition}/destroy', [ChampionshipEditionController::class, 'confirm'])->name('championshipEditions.confirm');
+    Route::resource('championshipEditions', ChampionshipEditionController::class);
 
 });

@@ -14,7 +14,8 @@ class ChampionshipEditionController extends Controller
      */
     public function index()
     {
-        //
+        $championshipEditions = ChampionshipEdition::all();
+        return view('dashboard.championshipEditions.index', compact('championshipEditions'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ChampionshipEditionController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.championshipEditions.create');
     }
 
     /**
@@ -35,7 +36,12 @@ class ChampionshipEditionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $this->validate($request, [
+        //     'name' => 'required|unique:championship_editions|max:100',
+        // ]);
+
+        ChampionshipEdition::create(['name' => $request->input('name')]);
+        return redirect()->route('dashboard.championshipEditions.index')->with('success', __('terms.created'));
     }
 
     /**
@@ -46,7 +52,7 @@ class ChampionshipEditionController extends Controller
      */
     public function show(ChampionshipEdition $championshipEdition)
     {
-        //
+        return view('dashboard.championshipEditions.show', compact('championshipEdition'));
     }
 
     /**
@@ -57,7 +63,7 @@ class ChampionshipEditionController extends Controller
      */
     public function edit(ChampionshipEdition $championshipEdition)
     {
-        //
+        return view('dashboard.championshipEditions.edit', compact('championshipEdition'));
     }
 
     /**
@@ -69,7 +75,27 @@ class ChampionshipEditionController extends Controller
      */
     public function update(Request $request, ChampionshipEdition $championshipEdition)
     {
-        //
+        // $this->validate($request, [
+        //     'name' => [
+        //         'required',
+        //         Rule::unique('championship_editions')->ignore($championship->id),
+        //         'max:100',
+        //     ],
+        // ]);
+
+        $championshipEdition->update(['name' => $request->input('name')]);
+        return redirect()->route('dashboard.championshipEditions.index')->with('success', __('terms.updated'));
+    }
+
+    /**
+     * Show the form to confirm the destruction.
+     *
+     * @param  \App\Models\ChampionshipEdition  $championshipEdition
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm(ChampionshipEdition $championshipEdition)
+    {
+        return view('dashboard.championshipEditions.confirm', compact('championshipEdition'));
     }
 
     /**
@@ -80,6 +106,7 @@ class ChampionshipEditionController extends Controller
      */
     public function destroy(ChampionshipEdition $championshipEdition)
     {
-        //
+        ChampionshipEdition::destroy($championshipEdition->id);
+        return redirect()->route('dashboard.championshipEditions.index')->with('success', __('terms.destroyed'));
     }
 }

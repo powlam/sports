@@ -15,7 +15,10 @@
                     $links = [
                         ['routeNamePattern' => 'dashboard.home', 'url' => route('dashboard.home'), 'text' => __('Dashboard')],
                         ['routeNamePattern' => 'dashboard.sports.*', 'url' => route('dashboard.sports.index'), 'text' => __('sport.menu_name')],
+                        ['routeNamePattern' => 'dashboard.sportDisciplines.*', 'url' => route('dashboard.sportDisciplines.index'), 'text' => __('sportDiscipline.menu_name')],
+                        ['routeNamePattern' => 'dashboard.sportEvents.*', 'url' => route('dashboard.sportEvents.index'), 'text' => __('sportEvent.menu_name')],
                         ['routeNamePattern' => 'dashboard.championships.*', 'url' => route('dashboard.championships.index'), 'text' => __('championship.menu_name')],
+                        ['routeNamePattern' => 'dashboard.championshipEditions.*', 'url' => route('dashboard.championshipEditions.index'), 'text' => __('championshipEdition.menu_name')],
                     ];
                 @endphp
                 @foreach ($links as $link)

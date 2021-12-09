@@ -55,14 +55,6 @@ class SportEvent extends Model
     }
 
     /**
-     * The related sport
-     */
-    public function sport()
-    {
-        return $this->hasOneThrough(Sport::class, SportDiscipline::class);
-    }
-
-    /**
      * The related editions
      */
     public function championshipEditions()
