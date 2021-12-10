@@ -38,10 +38,18 @@ class SportEventController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|unique:sport_events|max:100',
+            'sport_discipline_id' => 'required|exists:sport_disciplines,id',
+            'default' => 'boolean',
+            'name' => 'required|unique:sport_events|max:200',
+            'description' => 'nullable|string',
         ]);
 
-        SportEvent::create(['name' => $request->input('name')]);
+        SportEvent::create([
+            'sport_discipline_id' => $request->input('sport_discipline_id'),
+            'default' => $request->boolean('default', false),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
         return redirect()->route('dashboard.sportEvents.index')->with('success', __('terms.created'));
     }
 
@@ -77,14 +85,22 @@ class SportEventController extends Controller
     public function update(Request $request, SportEvent $sportEvent)
     {
         $this->validate($request, [
+            'sport_discipline_id' => 'required|exists:sport_disciplines,id',
+            'default' => 'boolean',
             'name' => [
                 'required',
                 Rule::unique('sport_events')->ignore($sportEvent->id),
-                'max:100',
+                'max:200',
             ],
+            'description' => 'nullable|string',
         ]);
 
-        $sportEvent->update(['name' => $request->input('name')]);
+        $sportEvent->update([
+            'sport_discipline_id' => $request->input('sport_discipline_id'),
+            'default' => $request->boolean('default', false),
+            'name' => $request->input('name'),
+            'description' => $request->input('description'),
+        ]);
         return redirect()->route('dashboard.sportEvents.index')->with('success', __('terms.updated'));
     }
 

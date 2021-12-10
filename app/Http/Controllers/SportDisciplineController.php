@@ -38,10 +38,16 @@ class SportDisciplineController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'sport_id' => 'required|exists:sports,id',
+            'default' => 'boolean',
             'name' => 'required|unique:sport_disciplines|max:100',
         ]);
 
-        SportDiscipline::create(['name' => $request->input('name')]);
+        SportDiscipline::create([
+            'sport_id' => $request->input('sport_id'),
+            'default' => $request->boolean('default', false),
+            'name' => $request->input('name'),
+        ]);
         return redirect()->route('dashboard.sportDisciplines.index')->with('success', __('terms.created'));
     }
 
@@ -77,6 +83,8 @@ class SportDisciplineController extends Controller
     public function update(Request $request, SportDiscipline $sportDiscipline)
     {
         $this->validate($request, [
+            'sport_id' => 'required|exists:sports,id',
+            'default' => 'boolean',
             'name' => [
                 'required',
                 Rule::unique('sport_disciplines')->ignore($sportDiscipline->id),
@@ -84,7 +92,11 @@ class SportDisciplineController extends Controller
             ],
         ]);
 
-        $sportDiscipline->update(['name' => $request->input('name')]);
+        $sportDiscipline->update([
+            'sport_id' => $request->input('sport_id'),
+            'default' => $request->boolean('default', false),
+            'name' => $request->input('name'),
+        ]);
         return redirect()->route('dashboard.sportDisciplines.index')->with('success', __('terms.updated'));
     }
 

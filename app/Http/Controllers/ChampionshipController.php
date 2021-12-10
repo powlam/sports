@@ -37,11 +37,22 @@ class ChampionshipController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required|unique:championships|max:100',
-        // ]);
+        $this->validate($request, [
+            'name' => 'required|unique:championships|max:191',
+            'scope' => [
+                'nullable',
+                Rule::in(Championship::$scopes),
+            ],
+            'location' => 'nullable|string|max:191',
+            'notes' => 'nullable|string|max:500',
+        ]);
 
-        Championship::create(['name' => $request->input('name')]);
+        Championship::create([
+            'name' => $request->input('name'),
+            'scope' => $request->input('scope'),
+            'location' => $request->input('location'),
+            'notes' => $request->input('notes'),
+        ]);
         return redirect()->route('dashboard.championships.index')->with('success', __('terms.created'));
     }
 
@@ -76,15 +87,26 @@ class ChampionshipController extends Controller
      */
     public function update(Request $request, Championship $championship)
     {
-        // $this->validate($request, [
-        //     'name' => [
-        //         'required',
-        //         Rule::unique('championships')->ignore($championship->id),
-        //         'max:100',
-        //     ],
-        // ]);
+        $this->validate($request, [
+            'name' => [
+                'required',
+                Rule::unique('championships')->ignore($championship->id),
+                'max:191',
+            ],
+            'scope' => [
+                'nullable',
+                Rule::in(Championship::$scopes),
+            ],
+            'location' => 'nullable|string|max:191',
+            'notes' => 'nullable|string|max:500',
+        ]);
 
-        $championship->update(['name' => $request->input('name')]);
+        $championship->update([
+            'name' => $request->input('name'),
+            'scope' => $request->input('scope'),
+            'location' => $request->input('location'),
+            'notes' => $request->input('notes'),
+        ]);
         return redirect()->route('dashboard.championships.index')->with('success', __('terms.updated'));
     }
 

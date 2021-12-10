@@ -51,18 +51,17 @@ Route::middleware(['auth'])
     })->name('home');
     
     Route::get('/sports/{sport}/destroy', [SportController::class, 'confirm'])->name('sports.confirm');
-    Route::resource('sports', SportController::class);
-    
     Route::get('/sportDisciplines/{sportDiscipline}/destroy', [SportDisciplineController::class, 'confirm'])->name('sportDisciplines.confirm');
-    Route::resource('sportDisciplines', SportDisciplineController::class);
-    
     Route::get('/sportEvents/{sportEvent}/destroy', [SportEventController::class, 'confirm'])->name('sportEvents.confirm');
-    Route::resource('sportEvents', SportEventController::class);
-    
     Route::get('/championships/{championship}/destroy', [ChampionshipController::class, 'confirm'])->name('championships.confirm');
-    Route::resource('championships', ChampionshipController::class);
-
     Route::get('/championshipEditions/{championshipEdition}/destroy', [ChampionshipEditionController::class, 'confirm'])->name('championshipEditions.confirm');
-    Route::resource('championshipEditions', ChampionshipEditionController::class);
+
+    Route::resources([
+        'sports' => SportController::class,
+        'sportDisciplines' => SportDisciplineController::class,
+        'sportEvents' => SportEventController::class,
+        'championships' => ChampionshipController::class,
+        'championshipEditions' => ChampionshipEditionController::class,
+    ]);
 
 });

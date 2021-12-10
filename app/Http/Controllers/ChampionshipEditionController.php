@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ChampionshipEdition;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ChampionshipEditionController extends Controller
 {
@@ -36,11 +37,30 @@ class ChampionshipEditionController extends Controller
      */
     public function store(Request $request)
     {
-        // $this->validate($request, [
-        //     'name' => 'required|unique:championship_editions|max:100',
-        // ]);
+        $this->validate($request, [
+            'championship_id' => 'required|exists:championships,id',
+            'name' => 'required|string|max:191',
+            'edition' => 'nullable|integer',
+            'start' => 'nullable|date',
+            'end' => 'nullable|date',
+            'state' => [
+                'nullable',
+                Rule::in(array_keys(ChampionshipEdition::$states)),
+            ],
+            'location' => 'nullable|string|max:191',
+            'notes' => 'nullable|string|max:500',
+        ]);
 
-        ChampionshipEdition::create(['name' => $request->input('name')]);
+        ChampionshipEdition::create([
+            'championship_id' => $request->input('championship_id'),
+            'name' => $request->input('name'),
+            'edition' => $request->input('edition', 1),
+            'start' => $request->date('start'),
+            'end' => $request->date('end'),
+            'state' => $request->input('state'),
+            'location' => $request->input('location'),
+            'notes' => $request->input('notes'),
+        ]);
         return redirect()->route('dashboard.championshipEditions.index')->with('success', __('terms.created'));
     }
 
@@ -75,15 +95,30 @@ class ChampionshipEditionController extends Controller
      */
     public function update(Request $request, ChampionshipEdition $championshipEdition)
     {
-        // $this->validate($request, [
-        //     'name' => [
-        //         'required',
-        //         Rule::unique('championship_editions')->ignore($championship->id),
-        //         'max:100',
-        //     ],
-        // ]);
+        $this->validate($request, [
+            'championship_id' => 'required|exists:championships,id',
+            'name' => 'required|string|max:191',
+            'edition' => 'nullable|integer',
+            'start' => 'nullable|date',
+            'end' => 'nullable|date',
+            'state' => [
+                'nullable',
+                Rule::in(array_keys(ChampionshipEdition::$states)),
+            ],
+            'location' => 'nullable|string|max:191',
+            'notes' => 'nullable|string|max:500',
+        ]);
 
-        $championshipEdition->update(['name' => $request->input('name')]);
+        $championshipEdition->update([
+            'championship_id' => $request->input('championship_id'),
+            'name' => $request->input('name'),
+            'edition' => $request->input('edition', 1),
+            'start' => $request->date('start'),
+            'end' => $request->date('end'),
+            'state' => $request->input('state'),
+            'location' => $request->input('location'),
+            'notes' => $request->input('notes'),
+        ]);
         return redirect()->route('dashboard.championshipEditions.index')->with('success', __('terms.updated'));
     }
 

@@ -17,7 +17,7 @@ class CreateChampionshipsTable extends Migration
         Schema::create('championships', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->enum('scope', Championship::$scopes);
+            $table->enum('scope', Championship::$scopes)->nullable();
             $table->string('location')->nullable(); // MAYBE relate with location table/s
             $table->string('notes', 500)->nullable();
         });
