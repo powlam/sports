@@ -11,7 +11,7 @@
             $allChampionships = Illuminate\Support\Arr::sort($allChampionships);
         @endphp
         
-        <x-select id="championshipEditionChampionship" class="w-full" name='championship_id' :value="old('championship_id') ?? $championshipEdition->championship_id ?? null" :error="$errors->has('championship_id')" :options="$allChampionships" required />
+        <x-select id="championshipEditionChampionship" class="w-full" name='championship_id' :value="old('championship_id') ?? $championshipEdition->championship_id ?? request()->query('championship_id') ?? null" :error="$errors->has('championship_id')" :options="$allChampionships" required />
     </div>
 </div>
 

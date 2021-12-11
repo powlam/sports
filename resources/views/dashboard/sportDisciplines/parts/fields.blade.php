@@ -10,7 +10,7 @@
             }
             $allSports = Illuminate\Support\Arr::sort($allSports);
         @endphp
-        <x-select id="sportDisciplineSport" class="w-full" name='sport_id' :value="old('sport_id') ?? $sportDiscipline->sport_id ?? null" :error="$errors->has('sport_id')" :options="$allSports" required />
+        <x-select id="sportDisciplineSport" class="w-full" name='sport_id' :value="old('sport_id') ?? $sportDiscipline->sport_id ?? request()->query('sport_id') ?? null" :error="$errors->has('sport_id')" :options="$allSports" required />
     </div>
 </div>
 
