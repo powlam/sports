@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\ChampionshipEdition;
+use App\Models\SportEvent;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,14 +22,24 @@ class DatabaseSeeder extends Seeder
         ]);
 
         \App\Models\SportDiscipline::factory(10)
-            ->hasSportEvents(5)
+            ->has(
+                SportEvent::factory(5)
+                    ->hasLogo()
+            )
+            ->hasLogo()
             ->create();
 
         \App\Models\Championship::factory(10)
-            ->hasChampionshipEditions(5)
+            // ->hasChampionshipEditions(5)
+            ->has(
+                ChampionshipEdition::factory(5)
+                    ->hasLogo()
+            )
+            ->hasLogo()
             ->create();
 
         \App\Models\Tournament::factory(20)
+            ->hasLogo()
             ->create();
     }
 }

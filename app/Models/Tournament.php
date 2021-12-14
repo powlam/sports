@@ -71,6 +71,14 @@ class Tournament extends Model
         return $this->belongsTo(SportEvent::class);
     }
 
+    /**
+     * Get the logo.
+     */
+    public function logo()
+    {
+        return $this->morphOne(Logo::class, 'logoable');
+    }
+
     /*****/
 
     /**

@@ -83,4 +83,12 @@ class Championship extends Model
         return $this->hasManyThrough(SportEvent::class, ChampionshipEvent::class, 'championship_id', 'id', 'id', 'sport_event_id');
     }
 
+    /**
+     * Get the logo.
+     */
+    public function logo()
+    {
+        return $this->morphOne(Logo::class, 'logoable');
+    }
+
 }

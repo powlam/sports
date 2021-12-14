@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Sport;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,6 +16,15 @@ class SportSeeder extends Seeder
     public function run()
     {
         DB::table('sports')->insert($this->getSports());
+
+        foreach (Sport::all() as $sport) {
+            $sport->logo()->save(
+                \App\Models\Logo::factory(1)->create([
+                    'logoable_id' => $sport->id,
+                    'logoable_type' => $sport->getMorphClass(),
+                ])->first()
+            );
+        }
     }
 
     private function getSports(): array

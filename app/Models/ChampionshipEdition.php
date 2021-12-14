@@ -138,4 +138,12 @@ class ChampionshipEdition extends Model
             ->first();
     }
 
+    /**
+     * Get the logo.
+     */
+    public function logo()
+    {
+        return $this->morphOne(Logo::class, 'logoable');
+    }
+
 }

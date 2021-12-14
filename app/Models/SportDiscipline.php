@@ -85,6 +85,14 @@ class SportDiscipline extends Model
         return $this->hasManyThrough(ChampionshipEdition::class, EditionDiscipline::class, 'sport_discipline_id', 'id', 'id', 'championship_edition_id');
     }
 
+    /**
+     * Get the logo.
+     */
+    public function logo()
+    {
+        return $this->morphOne(Logo::class, 'logoable');
+    }
+
     /** Scopes **/
 
     /**
