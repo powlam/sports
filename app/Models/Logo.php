@@ -27,8 +27,6 @@ class Logo extends Model
         'logoable_type',
     ];
 
-    // TODO set 'image' file size limit
-
     /** Relationships **/
 
     /**

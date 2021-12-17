@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logo;
 use App\Models\Sport;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class SportController extends Controller
@@ -39,9 +41,23 @@ class SportController extends Controller
     {
         $this->validate($request, [
             'name' => 'required|unique:sports|max:100',
+            'logo' => 'image|max:10',
         ]);
 
-        Sport::create(['name' => $request->input('name')]);
+        $sport = Sport::create(['name' => $request->input('name')]);
+
+        if ($request->hasFile('logo')) {
+            $image_path = $request->file('logo')->store('tmp');
+
+            Logo::updateOrCreate(
+                ['logoable_id' => $sport->id, 'logoable_type' => $sport->getMorphClass()],
+                ['image' => Logo::convertImageForDatabase(storage_path('app/').$image_path)]
+            );
+
+            Storage::delete($image_path);
+            $sport->refresh();
+        }
+
         return redirect()->route('dashboard.sports.index')->with('success', __('terms.created'));
     }
 
@@ -82,9 +98,23 @@ class SportController extends Controller
                 Rule::unique('sports')->ignore($sport->id),
                 'max:100',
             ],
+            'logo' => 'image|max:10',
         ]);
 
         $sport->update(['name' => $request->input('name')]);
+
+        if ($request->hasFile('logo')) {
+            $image_path = $request->file('logo')->store('tmp');
+
+            Logo::updateOrCreate(
+                ['logoable_id' => $sport->id, 'logoable_type' => $sport->getMorphClass()],
+                ['image' => Logo::convertImageForDatabase(storage_path('app/').$image_path)]
+            );
+
+            Storage::delete($image_path);
+            $sport->refresh();
+        }
+
         return redirect()->route('dashboard.sports.index')->with('success', __('terms.updated'));
     }
 
