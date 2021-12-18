@@ -8,7 +8,7 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            <form action='{{ route('dashboard.championships.store') }}' method='post' class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form action='{{ route('dashboard.championships.store') }}' method='post' enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @csrf
 
                 @include('dashboard.championships.parts.fields')

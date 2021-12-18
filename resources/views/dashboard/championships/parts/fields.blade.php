@@ -33,3 +33,12 @@
         <x-textarea rows="5" id="championshipNotes" class="w-full" name='notes' maxlength='500' :value="old('notes') ?? $championship->notes ?? null" :error="$errors->has('notes')" />
     </div>
 </div>
+
+<div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+        <x-label for="championshipLogo" :value="__('championship.logo')" />
+    </div>
+    <div class="md:w-2/3">
+        <x-dashboard.changable-image id="championshipLogo" name='logo' src="{{ ($championship ?? false) && $championship->logo ? $championship->logo->image : '' }}" :error="$errors->has('logo')" />
+    </div>
+</div>

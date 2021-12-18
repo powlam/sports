@@ -31,3 +31,12 @@
         <x-input id="sportDisciplineInputName" class="w-full" type="text" name='name' :value="old('name') ?? $sportDiscipline->name ?? null" :error="$errors->has('name')" required autofocus />
     </div>
 </div>
+
+<div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+        <x-label for="sportDisciplineLogo" :value="__('sportDiscipline.logo')" />
+    </div>
+    <div class="md:w-2/3">
+        <x-dashboard.changable-image id="sportDisciplineLogo" name='logo' src="{{ ($sportDiscipline ?? false) && $sportDiscipline->logo ? $sportDiscipline->logo->image : '' }}" :error="$errors->has('logo')" />
+    </div>
+</div>

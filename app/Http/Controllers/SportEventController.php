@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logo;
 use App\Models\SportEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class SportEventController extends Controller
@@ -42,14 +44,28 @@ class SportEventController extends Controller
             'default' => 'boolean',
             'name' => 'required|unique:sport_events|max:200',
             'description' => 'nullable|string',
+            'logo' => 'image|max:10',
         ]);
 
-        SportEvent::create([
+        $sportEvent = SportEvent::create([
             'sport_discipline_id' => $request->input('sport_discipline_id'),
             'default' => $request->boolean('default', false),
             'name' => $request->input('name'),
             'description' => $request->input('description'),
         ]);
+
+        if ($request->hasFile('logo')) {
+            $image_path = $request->file('logo')->store('tmp');
+
+            Logo::updateOrCreate(
+                ['logoable_id' => $sportEvent->id, 'logoable_type' => $sportEvent->getMorphClass()],
+                ['image' => Logo::convertImageForDatabase(storage_path('app/').$image_path)]
+            );
+
+            Storage::delete($image_path);
+            $sportEvent->refresh();
+        }
+
         return redirect()->route('dashboard.sportEvents.index')->with('success', __('terms.created'));
     }
 
@@ -93,6 +109,7 @@ class SportEventController extends Controller
                 'max:200',
             ],
             'description' => 'nullable|string',
+            'logo' => 'image|max:10',
         ]);
 
         $sportEvent->update([
@@ -101,6 +118,19 @@ class SportEventController extends Controller
             'name' => $request->input('name'),
             'description' => $request->input('description'),
         ]);
+
+        if ($request->hasFile('logo')) {
+            $image_path = $request->file('logo')->store('tmp');
+
+            Logo::updateOrCreate(
+                ['logoable_id' => $sportEvent->id, 'logoable_type' => $sportEvent->getMorphClass()],
+                ['image' => Logo::convertImageForDatabase(storage_path('app/').$image_path)]
+            );
+
+            Storage::delete($image_path);
+            $sportEvent->refresh();
+        }
+
         return redirect()->route('dashboard.sportEvents.index')->with('success', __('terms.updated'));
     }
 

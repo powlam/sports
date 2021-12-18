@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Championship;
+use App\Models\Logo;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class ChampionshipController extends Controller
@@ -45,14 +47,28 @@ class ChampionshipController extends Controller
             ],
             'location' => 'nullable|string|max:191',
             'notes' => 'nullable|string|max:500',
+            'logo' => 'image|max:10',
         ]);
 
-        Championship::create([
+        $championship = Championship::create([
             'name' => $request->input('name'),
             'scope' => $request->input('scope'),
             'location' => $request->input('location'),
             'notes' => $request->input('notes'),
         ]);
+
+        if ($request->hasFile('logo')) {
+            $image_path = $request->file('logo')->store('tmp');
+
+            Logo::updateOrCreate(
+                ['logoable_id' => $championship->id, 'logoable_type' => $championship->getMorphClass()],
+                ['image' => Logo::convertImageForDatabase(storage_path('app/').$image_path)]
+            );
+
+            Storage::delete($image_path);
+            $championship->refresh();
+        }
+
         return redirect()->route('dashboard.championships.index')->with('success', __('terms.created'));
     }
 
@@ -99,6 +115,7 @@ class ChampionshipController extends Controller
             ],
             'location' => 'nullable|string|max:191',
             'notes' => 'nullable|string|max:500',
+            'logo' => 'image|max:10',
         ]);
 
         $championship->update([
@@ -107,6 +124,19 @@ class ChampionshipController extends Controller
             'location' => $request->input('location'),
             'notes' => $request->input('notes'),
         ]);
+
+        if ($request->hasFile('logo')) {
+            $image_path = $request->file('logo')->store('tmp');
+
+            Logo::updateOrCreate(
+                ['logoable_id' => $championship->id, 'logoable_type' => $championship->getMorphClass()],
+                ['image' => Logo::convertImageForDatabase(storage_path('app/').$image_path)]
+            );
+
+            Storage::delete($image_path);
+            $championship->refresh();
+        }
+
         return redirect()->route('dashboard.championships.index')->with('success', __('terms.updated'));
     }
 

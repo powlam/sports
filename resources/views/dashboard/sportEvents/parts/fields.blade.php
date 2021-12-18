@@ -42,3 +42,12 @@
         <x-textarea rows="5" id="sportEventDescription" class="w-full" name='description' :value="old('description') ?? $sportEvent->description ?? null" :error="$errors->has('description')" />
     </div>
 </div>
+
+<div class="md:flex md:items-center mb-6">
+    <div class="md:w-1/3">
+        <x-label for="sportEventLogo" :value="__('sportEvent.logo')" />
+    </div>
+    <div class="md:w-2/3">
+        <x-dashboard.changable-image id="sportEventLogo" name='logo' src="{{ ($sportEvent ?? false) && $sportEvent->logo ? $sportEvent->logo->image : '' }}" :error="$errors->has('logo')" />
+    </div>
+</div>

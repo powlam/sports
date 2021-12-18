@@ -9,6 +9,7 @@ return [
     'edition' => 'Edition number',
     'end' => 'End date',
     'location' => 'Location',
+    'logo' => 'Logo',
     'menu_name' => 'Editions',
     'name' => 'Name',
     'notes' => 'Notes',

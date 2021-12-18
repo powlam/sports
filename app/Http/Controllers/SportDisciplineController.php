@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Logo;
 use App\Models\SportDiscipline;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class SportDisciplineController extends Controller
@@ -41,13 +43,27 @@ class SportDisciplineController extends Controller
             'sport_id' => 'required|exists:sports,id',
             'default' => 'boolean',
             'name' => 'required|unique:sport_disciplines|max:100',
+            'logo' => 'image|max:10',
         ]);
 
-        SportDiscipline::create([
+        $sportDiscipline = SportDiscipline::create([
             'sport_id' => $request->input('sport_id'),
             'default' => $request->boolean('default', false),
             'name' => $request->input('name'),
         ]);
+
+        if ($request->hasFile('logo')) {
+            $image_path = $request->file('logo')->store('tmp');
+
+            Logo::updateOrCreate(
+                ['logoable_id' => $sportDiscipline->id, 'logoable_type' => $sportDiscipline->getMorphClass()],
+                ['image' => Logo::convertImageForDatabase(storage_path('app/').$image_path)]
+            );
+
+            Storage::delete($image_path);
+            $sportDiscipline->refresh();
+        }
+
         return redirect()->route('dashboard.sportDisciplines.index')->with('success', __('terms.created'));
     }
 
@@ -90,6 +106,7 @@ class SportDisciplineController extends Controller
                 Rule::unique('sport_disciplines')->ignore($sportDiscipline->id),
                 'max:100',
             ],
+            'logo' => 'image|max:10',
         ]);
 
         $sportDiscipline->update([
@@ -97,6 +114,19 @@ class SportDisciplineController extends Controller
             'default' => $request->boolean('default', false),
             'name' => $request->input('name'),
         ]);
+
+        if ($request->hasFile('logo')) {
+            $image_path = $request->file('logo')->store('tmp');
+
+            Logo::updateOrCreate(
+                ['logoable_id' => $sportDiscipline->id, 'logoable_type' => $sportDiscipline->getMorphClass()],
+                ['image' => Logo::convertImageForDatabase(storage_path('app/').$image_path)]
+            );
+
+            Storage::delete($image_path);
+            $sportDiscipline->refresh();
+        }
+
         return redirect()->route('dashboard.sportDisciplines.index')->with('success', __('terms.updated'));
     }
 

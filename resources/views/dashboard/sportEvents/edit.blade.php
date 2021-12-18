@@ -8,7 +8,7 @@
             <!-- Validation Errors -->
             <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-            <form action='{{ route('dashboard.sportEvents.update', $sportEvent->id) }}' method='post' class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form action='{{ route('dashboard.sportEvents.update', $sportEvent->id) }}' method='post' enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 @method('PUT')
                 @csrf
 
