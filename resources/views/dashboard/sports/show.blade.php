@@ -4,6 +4,12 @@
     </x-slot>
 
     <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
+            @if ($sport->logo)
+                <img src="{{ $sport->logo->image }}" class="h-16"/>
+            @endif
+        </div>
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="flex space-x-1">
                 <x-button-link href="{{ route('dashboard.sports.edit', $sport->id) }}" color="purple">

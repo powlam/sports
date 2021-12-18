@@ -21,10 +21,13 @@
 
     <x-guest-card>
         <x-slot name="logo">
-            <a href="{{ route('guest.sport', $sportEvent->sportDiscipline->sport)}}" class="text-green-300 text-xl font-extrabold capitalize tracking-wide">
-                {{ $sportEvent->sportDiscipline->sport->name }}
+            <a href="{{ route('guest.sport', $sportEvent->sportDiscipline->sport)}}" class="text-green-300 text-xl font-extrabold capitalize tracking-wide block">
+                @if ($sportEvent->sportDiscipline->sport->logo)
+                    <img src="{{ $sportEvent->sportDiscipline->sport->logo->image }}" class="h-8 inline"/>
+                @endif
+                <span>{{ $sportEvent->sportDiscipline->sport->name }}</span>
             </a>
-            <a href="{{ route('guest.sportDiscipline', $sportEvent->sportDiscipline)}}" class="text-green-300 text-xl font-extrabold capitalize tracking-wide">
+            <a href="{{ route('guest.sportDiscipline', $sportEvent->sportDiscipline)}}" class="text-green-300 text-xl font-extrabold capitalize tracking-wide block">
                 {{ $sportEvent->sportDiscipline->name }}
             </a>
             <h1 class="text-green-400 text-2xl font-extrabold capitalize tracking-wide">
