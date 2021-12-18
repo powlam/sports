@@ -4,10 +4,87 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-            @if ($championshipEdition->logo)
-                <img src="{{ $championshipEdition->logo->image }}" class="h-16"/>
-            @endif
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.championship')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $championshipEdition->championship->name }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.name')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $championshipEdition->name }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.edition')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $championshipEdition->edition }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.start')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $championshipEdition->start->format('Y-m-d') }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.end')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $championshipEdition->end->format('Y-m-d') }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.state')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $championshipEdition->state ? App\Models\ChampionshipEdition::$states[$championshipEdition->state] : '' }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.location')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $championshipEdition->location }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.notes')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $championshipEdition->notes }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('championshipEdition.logo')" />
+            </div>
+            <div class="md:w-2/3">
+                @if ($championshipEdition->logo)
+                    <img src="{{ $championshipEdition->logo->image }}" class="h-16"/>
+                @endif
+            </div>
         </div>
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

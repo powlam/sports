@@ -38,7 +38,7 @@
         <x-label for="championshipEditionStart" :value="__('championshipEdition.start')" />
     </div>
     <div class="md:w-2/3">
-        <x-input id="championshipEditionStart" class="w-full" type="date" name='start' :value="old('start') ?? $championshipEdition->start ?? null" :error="$errors->has('start')" />
+        <x-input id="championshipEditionStart" class="w-full" type="date" name='start' :value="old('start') ?? $championshipEdition->start->format('Y-m-d') ?? null" :error="$errors->has('start')" />
     </div>
 </div>
 
@@ -47,7 +47,7 @@
         <x-label for="championshipEditionEnd" :value="__('championshipEdition.end')" />
     </div>
     <div class="md:w-2/3">
-        <x-input id="championshipEditionEnd" class="w-full" type="date" name='end' :value="old('end') ?? $championshipEdition->end ?? null" :error="$errors->has('end')" />
+        <x-input id="championshipEditionEnd" class="w-full" type="date" name='end' :value="old('end') ?? $championshipEdition->end->format('Y-m-d') ?? null" :error="$errors->has('end')" />
     </div>
 </div>
 

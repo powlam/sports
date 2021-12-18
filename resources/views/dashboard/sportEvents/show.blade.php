@@ -4,10 +4,51 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-            @if ($sportEvent->logo)
-                <img src="{{ $sportEvent->logo->image }}" class="h-16"/>
-            @endif
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportEvent.sport_discipline')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ sprintf("%s - %s", $sportEvent->sportDiscipline->sport->name, $sportEvent->sportDiscipline->name) }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportEvent.default')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $sportEvent->default ? __('Yes') : __('No') }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportEvent.name')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $sportEvent->name }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportEvent.description')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $sportEvent->description }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportEvent.logo')" />
+            </div>
+            <div class="md:w-2/3">
+                @if ($sportEvent->logo)
+                    <img src="{{ $sportEvent->logo->image }}" class="h-16"/>
+                @endif
+            </div>
         </div>
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

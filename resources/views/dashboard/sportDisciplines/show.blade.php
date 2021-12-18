@@ -4,10 +4,42 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6">
-            @if ($sportDiscipline->logo)
-                <img src="{{ $sportDiscipline->logo->image }}" class="h-16"/>
-            @endif
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportDiscipline.sport')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $sportDiscipline->sport->name }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportDiscipline.default')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $sportDiscipline->default ? __('Yes') : __('No') }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportDiscipline.name')" />
+            </div>
+            <div class="md:w-2/3">
+                {{ $sportDiscipline->name }}
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 mb-6 md:flex md:items-center">
+            <div class="md:w-1/3">
+                <x-label :value="__('sportDiscipline.logo')" />
+            </div>
+            <div class="md:w-2/3">
+                @if ($sportDiscipline->logo)
+                    <img src="{{ $sportDiscipline->logo->image }}" class="h-16"/>
+                @endif
+            </div>
         </div>
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">

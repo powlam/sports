@@ -44,9 +44,9 @@ class Championship extends Model
      * @var string[]
      */
     public static $scopes = [
-        'national',
-        'continental',
-        'world',
+        'national' => 'national',
+        'continental' => 'continental',
+        'world' => 'world',
     ];
 
     /** Relationships **/
