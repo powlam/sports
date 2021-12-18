@@ -22,7 +22,10 @@
     <x-guest-card>
         <x-slot name="logo">
             <h1 class="text-green-400 text-2xl font-extrabold capitalize tracking-wide">
-                {{ $championship->name }}
+                @if ($championship->logo)
+                    <img src="{{ $championship->logo->image }}" class="h-12 inline"/>
+                @endif
+                <span>{{ $championship->name }}</span>
             </h1>
         </x-slot>
 

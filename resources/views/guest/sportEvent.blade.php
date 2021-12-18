@@ -28,10 +28,16 @@
                 <span>{{ $sportEvent->sportDiscipline->sport->name }}</span>
             </a>
             <a href="{{ route('guest.sportDiscipline', $sportEvent->sportDiscipline)}}" class="text-green-300 text-xl font-extrabold capitalize tracking-wide block">
-                {{ $sportEvent->sportDiscipline->name }}
+                @if ($sportEvent->sportDiscipline->logo)
+                    <img src="{{ $sportEvent->sportDiscipline->logo->image }}" class="h-8 inline"/>
+                @endif
+                <span>{{ $sportEvent->sportDiscipline->name }}</span>
             </a>
             <h1 class="text-green-400 text-2xl font-extrabold capitalize tracking-wide">
-                {{ $sportEvent->name }}
+                @if ($sportEvent->logo)
+                    <img src="{{ $sportEvent->logo->image }}" class="h-12 inline"/>
+                @endif
+                <span>{{ $sportEvent->name }}</span>
             </h1>
         </x-slot>
 

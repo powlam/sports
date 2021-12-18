@@ -22,10 +22,16 @@
     <x-guest-card>
         <x-slot name="logo">
             <a href="{{ route('guest.championship', $championshipEdition->championship)}}" class="text-green-300 text-xl font-extrabold capitalize tracking-wide">
-                {{ $championshipEdition->championship->name }}
+                @if ($championshipEdition->championship->logo)
+                    <img src="{{ $championshipEdition->championship->logo->image }}" class="h-8 inline"/>
+                @endif
+                <span>{{ $championshipEdition->championship->name }}</span>
             </a>
             <h1 class="text-green-400 text-2xl font-extrabold capitalize tracking-wide">
-                {{ $championshipEdition->name }}
+                @if ($championshipEdition->logo)
+                    <img src="{{ $championshipEdition->logo->image }}" class="h-12 inline"/>
+                @endif
+                <span>{{ $championshipEdition->name }}</span>
             </h1>
         </x-slot>
 

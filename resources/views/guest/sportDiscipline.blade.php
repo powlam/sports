@@ -28,7 +28,10 @@
                 <span>{{ $sportDiscipline->sport->name }}</span>
             </a>
             <h1 class="text-green-400 text-2xl font-extrabold capitalize tracking-wide">
-                {{ $sportDiscipline->name }}
+                @if ($sportDiscipline->logo)
+                    <img src="{{ $sportDiscipline->logo->image }}" class="h-12 inline"/>
+                @endif
+                <span>{{ $sportDiscipline->name }}</span>
             </h1>
         </x-slot>
 

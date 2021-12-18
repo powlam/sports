@@ -26,7 +26,10 @@
                                 {{ $championship->id }}
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap font-bold border-b border-gray-200">
-                                {{ $championship->name }}
+                                @if ($championship->logo)
+                                    <img src="{{ $championship->logo->image }}" class="h-8 inline"/>
+                                @endif
+                                <span>{{ $championship->name }}</span>
                             </td>
                             <td class="px-6 py-4 whitespace-no-wrap text-right border-b border-gray-200">
                                 <a href="{{ route('dashboard.championships.show', $championship->id) }}" class="inline-block text-purple-600 p-2 rounded-full hover:bg-purple-200">
