@@ -112,6 +112,23 @@ class ChampionshipEdition extends Model
         return $this->hasManyThrough(SportDiscipline::class, EditionDiscipline::class, 'championship_edition_id', 'id', 'id', 'sport_discipline_id');
     }
 
+    /** Accessors **/
+
+    /**
+     * Get the full name (path).
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        $full_name = [];
+        $full_name[] = $this->championship->name;
+        if ($this->championship->name !== $this->name) {
+            $full_name[] = $this->name;
+        }
+        return implode(' - ', $full_name).($this->edition > 1 ? " ({$this->edition})" : '');
+    }
+
     /*****/
 
     /**

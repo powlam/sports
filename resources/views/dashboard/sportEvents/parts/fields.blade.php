@@ -6,9 +6,7 @@
         @php
             $allSportDisciplines = [];
             foreach (App\Models\SportDiscipline::all() as $sportDiscipline) {
-                $allSportDisciplines[$sportDiscipline->id] = sprintf("%s - %s",
-                    $sportDiscipline->sport->name,
-                    $sportDiscipline->name);
+                $allSportDisciplines[$sportDiscipline->id] = $sportDiscipline->full_name;
             }
             $allSportDisciplines = Illuminate\Support\Arr::sort($allSportDisciplines);
         @endphp

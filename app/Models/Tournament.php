@@ -90,6 +90,24 @@ class Tournament extends Model
         return $this->morphOne(Logo::class, 'logoable');
     }
 
+    /** Accessors **/
+
+    /**
+     * Get the name of the tournament. Constructed
+     *
+     * @return string
+     */
+    public function getNameAttribute()
+    {
+        $name = [];
+        $name[] = $this->championshipEdition->full_name;
+        if ($this->championshipEdition->sportEvents->count() > 1) {
+            $name[] = $this->sportEvent->name;
+            $name[] = $this->genre;
+        }
+        return implode(' - ', $name);
+    }
+
     /*****/
 
     /**

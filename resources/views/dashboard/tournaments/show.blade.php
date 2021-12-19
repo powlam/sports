@@ -9,7 +9,7 @@
                 <x-label :value="__('tournament.championship_edition')" />
             </div>
             <div class="md:w-2/3">
-                {{ sprintf("%s - %s", $tournament->championshipEdition->championship->name, $tournament->championshipEdition->name) }}
+                {{ $tournament->championshipEdition->full_name }}
             </div>
         </div>
 
@@ -18,7 +18,7 @@
                 <x-label :value="__('tournament.sport_event')" />
             </div>
             <div class="md:w-2/3">
-                {{ sprintf("%s - %s - %s", $tournament->sportEvent->sportDiscipline->sport->name, $tournament->sportEvent->sportDiscipline->name, $tournament->sportEvent->name) }}
+                {{ $tournament->sportEvent->full_name }}
             </div>
         </div>
 

@@ -78,4 +78,21 @@ class SportEvent extends Model
         return $this->morphOne(Logo::class, 'logoable');
     }
 
+    /** Accessors **/
+
+    /**
+     * Get the full name (path).
+     *
+     * @return string
+     */
+    public function getFullNameAttribute()
+    {
+        $full_name = [];
+        $full_name[] = $this->sportDiscipline->full_name;
+        if (!$this->default || ($this->sportDiscipline->name !== $this->name)) {
+            $full_name[] = $this->name;
+        }
+        return implode(' - ', $full_name);
+    }
+
 }

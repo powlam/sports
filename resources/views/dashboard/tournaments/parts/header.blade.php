@@ -5,5 +5,5 @@
         </svg>
     </a>
 
-    <span class="font-bold">{{ $tournament->id ? $tournament->championshipEdition->name.' - '.$tournament->sportEvent->name : __('tournament.button.new') }}</span>
+    <span class="font-bold">{{ $tournament->id ? $tournament->name : __('tournament.button.new') }}</span>
 </h2>

@@ -6,9 +6,7 @@
         @php
             $allChampionshipEditions = [];
             foreach (App\Models\ChampionshipEdition::all() as $championshipEdition) {
-                $allChampionshipEditions[$championshipEdition->id] = sprintf("%s - %s",
-                    $championshipEdition->championship->name,
-                    $championshipEdition->name);
+                $allChampionshipEditions[$championshipEdition->id] = $championshipEdition->full_name;
             }
             $allChampionshipEditions = Illuminate\Support\Arr::sort($allChampionshipEditions);
         @endphp
@@ -24,10 +22,7 @@
         @php
             $allSportEvents = [];
             foreach (App\Models\SportEvent::all() as $sportEvent) {
-                $allSportEvents[$sportEvent->id] = sprintf("%s - %s - %s",
-                    $sportEvent->sportDiscipline->sport->name,
-                    $sportEvent->sportDiscipline->name,
-                    $sportEvent->name);
+                $allSportEvents[$sportEvent->id] = $sportEvent->full_name;
             }
             $allSportEvents = Illuminate\Support\Arr::sort($allSportEvents);
         @endphp
