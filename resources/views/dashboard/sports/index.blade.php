@@ -47,6 +47,7 @@
                     @endforelse
                 </tbody>
             </table>
+            {{ $sports->links() }}
 
             <x-button-link href="{{ route('dashboard.sports.create') }}" color="purple">
                 @lang('terms.button.create_new')

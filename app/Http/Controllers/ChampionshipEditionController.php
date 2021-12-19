@@ -17,7 +17,7 @@ class ChampionshipEditionController extends Controller
      */
     public function index()
     {
-        $championshipEditions = ChampionshipEdition::all();
+        $championshipEditions = ChampionshipEdition::paginate();
         return view('dashboard.championshipEditions.index', compact('championshipEditions'));
     }
 

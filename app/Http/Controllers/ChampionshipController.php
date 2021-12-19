@@ -17,7 +17,7 @@ class ChampionshipController extends Controller
      */
     public function index()
     {
-        $championships = Championship::all();
+        $championships = Championship::paginate();
         return view('dashboard.championships.index', compact('championships'));
     }
 

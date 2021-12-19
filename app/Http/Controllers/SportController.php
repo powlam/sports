@@ -17,7 +17,7 @@ class SportController extends Controller
      */
     public function index()
     {
-        $sports = Sport::all();
+        $sports = Sport::paginate();
         return view('dashboard.sports.index', compact('sports'));
     }
 
