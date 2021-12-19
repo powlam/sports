@@ -23,7 +23,7 @@ class TournamentFactory extends Factory
             'sport_event_id' => $this->faker->randomElement($sportEventIds),
             'genre' => $this->faker->randomElement(array_keys(Tournament::$genres)),
             'type' => $this->faker->randomElement(Tournament::$types),
-            'state' => $this->faker->randomElement(array_keys(ChampionshipEdition::$states)),
+            'state' => $this->faker->randomElement(array_keys(Tournament::$states)),
         ];
     }
 }

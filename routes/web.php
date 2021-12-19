@@ -6,6 +6,7 @@ use App\Http\Controllers\GuestController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportDisciplineController;
 use App\Http\Controllers\SportEventController;
+use App\Http\Controllers\TournamentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,18 +51,20 @@ Route::middleware(['auth'])
         return view('dashboard');
     })->name('home');
     
+    Route::get('/championships/{championship}/destroy', [ChampionshipController::class, 'confirm'])->name('championships.confirm');
+    Route::get('/championshipEditions/{championshipEdition}/destroy', [ChampionshipEditionController::class, 'confirm'])->name('championshipEditions.confirm');
     Route::get('/sports/{sport}/destroy', [SportController::class, 'confirm'])->name('sports.confirm');
     Route::get('/sportDisciplines/{sportDiscipline}/destroy', [SportDisciplineController::class, 'confirm'])->name('sportDisciplines.confirm');
     Route::get('/sportEvents/{sportEvent}/destroy', [SportEventController::class, 'confirm'])->name('sportEvents.confirm');
-    Route::get('/championships/{championship}/destroy', [ChampionshipController::class, 'confirm'])->name('championships.confirm');
-    Route::get('/championshipEditions/{championshipEdition}/destroy', [ChampionshipEditionController::class, 'confirm'])->name('championshipEditions.confirm');
+    Route::get('/tournaments/{tournament}/destroy', [TournamentController::class, 'confirm'])->name('tournaments.confirm');
 
     Route::resources([
+        'championships' => ChampionshipController::class,
+        'championshipEditions' => ChampionshipEditionController::class,
         'sports' => SportController::class,
         'sportDisciplines' => SportDisciplineController::class,
         'sportEvents' => SportEventController::class,
-        'championships' => ChampionshipController::class,
-        'championshipEditions' => ChampionshipEditionController::class,
+        'tournaments' => TournamentController::class,
     ]);
 
 });

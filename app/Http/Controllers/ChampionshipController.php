@@ -43,7 +43,7 @@ class ChampionshipController extends Controller
             'name' => 'required|unique:championships|max:191',
             'scope' => [
                 'nullable',
-                Rule::in(Championship::$scopes),
+                Rule::in(array_keys(Championship::$scopes)),
             ],
             'location' => 'nullable|string|max:191',
             'notes' => 'nullable|string|max:500',
@@ -111,7 +111,7 @@ class ChampionshipController extends Controller
             ],
             'scope' => [
                 'nullable',
-                Rule::in(Championship::$scopes),
+                Rule::in(array_keys(Championship::$scopes)),
             ],
             'location' => 'nullable|string|max:191',
             'notes' => 'nullable|string|max:500',

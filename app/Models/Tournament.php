@@ -49,8 +49,19 @@ class Tournament extends Model
      * @var string[]
      */
     public static $types = [
-        'league',
-        'knockout',
+        'league' => 'league',
+        'knockout' => 'knockout',
+    ];
+
+    /**
+     * The possible states
+     *
+     * @var string[]
+     */
+    public static $states = [
+        1 => 'not started',
+        2 => 'running',
+        3 => 'ended',
     ];
 
     /** Relationships **/
