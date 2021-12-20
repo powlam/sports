@@ -43,7 +43,6 @@ class TournamentController extends Controller
             'championship_edition_id' => 'required|exists:championship_editions,id',
             'sport_event_id' => 'required|exists:sport_events,id',
             'genre' => [
-                'nullable',
                 Rule::in(array_keys(Tournament::$genres)),
             ],
             'type' => [
@@ -112,11 +111,19 @@ class TournamentController extends Controller
     public function update(Request $request, Tournament $tournament)
     {
         $this->validate($request, [
-            'championship_edition_id' => $request->input('championship_edition_id'),
-            'sport_event_id' => $request->input('sport_event_id'),
-            'genre' => $request->input('genre'),
-            'type' => $request->input('type'),
-            'state' => $request->input('state'),
+            'championship_edition_id' => 'required|exists:championship_editions,id',
+            'sport_event_id' => 'required|exists:sport_events,id',
+            'genre' => [
+                Rule::in(array_keys(Tournament::$genres)),
+            ],
+            'type' => [
+                'nullable',
+                Rule::in(array_keys(Tournament::$types)),
+            ],
+            'state' => [
+                'nullable',
+                Rule::in(array_keys(Tournament::$states)),
+            ],
             'logo' => 'image|max:10',
         ]);
 

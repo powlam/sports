@@ -20,7 +20,7 @@ class CreateTournamentsTable extends Migration
             $table->foreignId('championship_edition_id');
             $table->foreignId('sport_event_id');
             $table->enum('genre', array_keys(Tournament::$genres))->default('M');
-            $table->enum('type', Tournament::$types);
+            $table->enum('type', Tournament::$types)->nullable();
             $table->enum('state', array_keys(ChampionshipEdition::$states))->nullable();
 
             $table->unique(['championship_edition_id', 'sport_event_id', 'genre']);
