@@ -59,7 +59,7 @@ class SportEvent extends Model
      */
     public function championshipEditions()
     {
-        return $this->belongsToMany(ChampionshipEdition::class, 'tournaments')->as('tournament')->withPivot('genre', 'type', 'state');
+        return $this->belongsToMany(ChampionshipEdition::class, 'tournaments')->as('tournament')->withPivot('id', 'genre', 'type', 'state');
     }
 
     /**
