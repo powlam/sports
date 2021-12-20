@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\ChampionshipEditionController;
 use App\Http\Controllers\GuestController;
+use App\Http\Controllers\PhaseController;
 use App\Http\Controllers\SportController;
 use App\Http\Controllers\SportDisciplineController;
 use App\Http\Controllers\SportEventController;
@@ -34,6 +35,8 @@ Route::name('guest.')
     Route::get('/championships/{championship}', [GuestController::class, 'championship'])->name('championship');
     Route::get('/editions/{championshipEdition}', [GuestController::class, 'championshipEdition'])->name('championshipEdition');
 
+    Route::get('/tournaments/{tournament}', [GuestController::class, 'tournament'])->name('tournament');
+
 });
 
 /* Authentication */
@@ -53,6 +56,7 @@ Route::middleware(['auth'])
     
     Route::get('/championships/{championship}/destroy', [ChampionshipController::class, 'confirm'])->name('championships.confirm');
     Route::get('/championshipEditions/{championshipEdition}/destroy', [ChampionshipEditionController::class, 'confirm'])->name('championshipEditions.confirm');
+    Route::get('/phases/{phase}/destroy', [PhaseController::class, 'confirm'])->name('phases.confirm');
     Route::get('/sports/{sport}/destroy', [SportController::class, 'confirm'])->name('sports.confirm');
     Route::get('/sportDisciplines/{sportDiscipline}/destroy', [SportDisciplineController::class, 'confirm'])->name('sportDisciplines.confirm');
     Route::get('/sportEvents/{sportEvent}/destroy', [SportEventController::class, 'confirm'])->name('sportEvents.confirm');
@@ -61,10 +65,12 @@ Route::middleware(['auth'])
     Route::resources([
         'championships' => ChampionshipController::class,
         'championshipEditions' => ChampionshipEditionController::class,
+        'phases' => PhaseController::class,
         'sports' => SportController::class,
         'sportDisciplines' => SportDisciplineController::class,
         'sportEvents' => SportEventController::class,
         'tournaments' => TournamentController::class,
     ]);
+    Route::resource('phases', PhaseController::class)->except(['index']);
 
 });

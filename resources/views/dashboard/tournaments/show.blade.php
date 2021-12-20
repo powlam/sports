@@ -70,6 +70,27 @@
     </div>
 
     {{-- Relationships --}}
+    <div class="flex justify-center flex-wrap space-x-4 bg-gray-200">
+        <x-dashboard.related-card>
+            <x-slot name="title">
+                @lang('Phases')
+
+                <x-dashboard.button-link-mini href="{{ route('dashboard.phases.create', ['tournament_id' => $tournament->id]) }}" color="gray" class="absolute top-1 right-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
+                    </svg>
+                </x-dashboard.button-link-mini>
+            </x-slot>
+
+            @foreach ($tournament->phases as $phase)
+                <a href="{{ route('dashboard.phases.show', $phase->id) }}" class="text-gray-300 hover:text-current border-b-2 border-solid border-transparent hover:border-yellow-500 cursor-pointer select-none">
+                    <span class="text-xs mr-3">{{ (new NumberFormatter(app()->getLocale(), NumberFormatter::ORDINAL))->format($phase->order) }}</span> {{ $phase->name }}
+                </a>
+            @endforeach
+        </x-dashboard.related-card>
+    </div>
+
+    {{-- Relationships --}}
     <div class="flex justify-center flex-wrap space-x-4 bg-yellow-50">
         <x-dashboard.related-card>
             <x-slot name="title">

@@ -92,6 +92,14 @@ class Tournament extends Model
     }
 
     /**
+     * The related phases
+     */
+    public function phases()
+    {
+        return $this->hasMany(Phase::class);
+    }
+
+    /**
      * Get the logo.
      */
     public function logo()

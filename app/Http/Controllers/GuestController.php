@@ -7,6 +7,7 @@ use App\Models\ChampionshipEdition;
 use App\Models\Sport;
 use App\Models\SportDiscipline;
 use App\Models\SportEvent;
+use App\Models\Tournament;
 use Illuminate\Http\Request;
 
 class GuestController extends Controller
@@ -57,6 +58,14 @@ class GuestController extends Controller
     public function championshipEdition(ChampionshipEdition $championshipEdition)
     {
         return view('guest.championshipEdition', compact('championshipEdition'));
+    }
+
+    /**
+     * @return \Illuminate\View\View
+     */
+    public function tournament(Tournament $tournament)
+    {
+        return view('guest.tournament', compact('tournament'));
     }
 
 }
